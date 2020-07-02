@@ -1,0 +1,2 @@
+rootProject.name = 'xpay-java'
+include 'example'
