@@ -28,8 +28,8 @@ public class ChargeDeserializer implements JsonDeserializer<Payment> {
             JsonObject channelCredential;
             if (credentialJson.getAsJsonObject("wx") != null) {
                 JsonObject wx = credentialJson.getAsJsonObject("wx");
-                Long timeStamp = wx.get("timeStamp").getAsLong();
-                wx.addProperty("timeStamp", Long.toString(timeStamp));
+                Long timeStamp = wx.get("timestamp").getAsLong();
+                wx.addProperty("timestamp", Long.toString(timeStamp));
             } else if (credentialJson.getAsJsonObject("wx_pub") != null) {
                 JsonObject wxPub = credentialJson.getAsJsonObject("wx_pub");
                 if (null == wxPub.get("signed_data") && wxPub.get("timeStamp") != null) {
