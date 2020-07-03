@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * Payment 对象相关示例
  *
- * 该实例程序演示了如何从 XPay 服务器获得 charge ，查询 charge。
+ * 该实例程序演示了如何从 XPay 服务器获得 payment ，查询 payment。
  *
  * 开发者需要填写 apiKey 和 appId ，
  *
@@ -34,14 +34,14 @@ public class PaymentExample {
 
     public static void runDemos(String appId) {
         PaymentExample paymentExample = new PaymentExample(appId);
-        System.out.println("------- 创建 charge -------");
-        Payment charge = paymentExample.createPayment();
-        System.out.println("------- 查询 charge -------");
-        paymentExample.retrieve(charge.getId());
-        System.out.println("------- 查询 charge 列表 -------");
+        System.out.println("------- 创建 payment -------");
+        Payment payment = paymentExample.createPayment();
+        System.out.println("------- 查询 payment -------");
+        paymentExample.retrieve(payment.getId());
+        System.out.println("------- 查询 payment 列表 -------");
         paymentExample.list();
-        System.out.println("------- 撤销 charge（仅支持线下渠道） -------");
-        paymentExample.reverse(charge.getId());
+        System.out.println("------- 撤销 payment（仅支持线下渠道） -------");
+        paymentExample.reverse(payment.getId());
     }
 
     /**
@@ -53,7 +53,7 @@ public class PaymentExample {
      */
     public Payment createPayment() {
         Payment charge = null;
-        String channel = "wx_pub";
+        String channel = "wx";
 
         Map<String, Object> chargeMap = new HashMap<String, Object>();
         chargeMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）

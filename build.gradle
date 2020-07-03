@@ -2,6 +2,10 @@ buildscript {
     repositories {
         jcenter()
     }
+
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.18"
+    }
 }
 
 plugins {
@@ -47,14 +51,14 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId 'xpay'
+            groupId 'com.xpay'
             artifactId 'xpay-java'
             version "1.0.0"
 
             pom.withXml {
                 def root = asNode()
                 root.appendNode('name', 'xpay-java')
-                root.appendNode('url', 'https://github.com/xpay/xpay-java')
+                root.appendNode('url', 'https://github.com/xxxpay/xpay-java')
             }
         }
     }
@@ -71,7 +75,7 @@ bintray {
         name = 'xpay-java'
         licenses = ['MIT']
         labels = ['XPay', 'xpay', 'payment']
-        vcsUrl = 'https://github.com/xpay/xpay-java.git'
+        vcsUrl = 'https://github.com/xxxpay/xpay-java.git'
         version {
             name = "1.0.0"
         }
@@ -83,3 +87,6 @@ model {
         destination = file("pom.xml")
     }
 }
+
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

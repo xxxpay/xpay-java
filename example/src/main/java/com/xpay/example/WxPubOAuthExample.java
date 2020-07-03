@@ -64,7 +64,7 @@ public class WxPubOAuthExample {
         String code = "os823ndskelcncfyfms";
         try {
             String openid = WxpubOAuth.getOpenId(wxAppId, wxAppSecret, code);
-            System.out.println("4. 得到 openid 用于创建 charge");
+            System.out.println("4. 得到 openid 用于创建 payment");
         } catch (ChannelException e) {
             e.printStackTrace();
         }

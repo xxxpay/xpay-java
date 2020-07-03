@@ -8,8 +8,8 @@
 - Identification
 - 账户系统相关接口请查看 [XPay API 文档](https://www.xpay.com/api) 或参考[测试示例](/src/test/java/com/xpay)
 
-#### Charge
-##### 创建 Charge
+#### Payment
+##### 创建 Payment
 ``` java
 create(Map<String, Object> params)
 ```

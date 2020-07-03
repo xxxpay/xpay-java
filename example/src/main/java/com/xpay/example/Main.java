@@ -6,19 +6,17 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 /**
- * Created by Afon on 16/4/26.
  */
 public class Main {
-
     /**
      * XPay 管理平台对应的 API Key，api_key 获取方式：登录 [Dashboard](https://dashboard.xpay.com)->点击管理平台右上角公司名称->开发信息-> Secret Key
      */
-    private final static String apiKey = "sk_test_ibbTe5jLGCi5rzfH4OqPW9KC";
+    private final static String apiKey = "3d6285c77d1646f096c21210f9a6db22";
 
     /**
      * XPay 管理平台对应的应用 ID，app_id 获取方式：登录 [Dashboard](https://dashboard.xpay.com)->点击你创建的应用->应用首页->应用 ID(App ID)
      */
-    private final static String appId = "app_1Gqj58ynP0mHeX1q";
+    private final static String appId = "f5fe7e65ad7f46af89921565f78a9879";
 
     /**
    * 设置请求签名密钥，密钥对需要你自己用 openssl 工具生成，如何生成可以参考帮助中心：https://help.xpay.com/article/123161；
@@ -34,6 +32,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         projectDir = System.getProperty("user.dir") + "/example/";
+
+        XPay.setApiBase("https://api.xpay-test.lucfish.com");
 
         // 设置 API Key
         XPay.apiKey = apiKey;
