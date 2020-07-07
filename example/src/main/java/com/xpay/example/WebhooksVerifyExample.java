@@ -16,17 +16,19 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.security.spec.X509EncodedKeySpec;
 
+import com.xpay.model.Payment;
+import com.xpay.model.Webhooks;
+import com.xpay.model.XPayObject;
 import org.apache.commons.codec.binary.Base64;
 
 /**
  * 该实例演示如何对 XPay webhooks 通知进行验证。
  * 验证是为了让开发者确认该通知来自 XPay ，防止恶意伪造通知。用户如果有别的验证机制，可以不进行验证签名。
- *
+ * <p>
  * 验证签名需要 签名、公钥、验证信息，该实例采用文件存储方式进行演示。
  * 实际项目中，需要用户从异步通知的 HTTP header 中读取签名，从 HTTP body 中读取验证信息。公钥的存储方式也需要用户自行设定。
- *
- *  该实例仅供演示如何验证签名，请务必不要直接 copy 到实际项目中使用。
- *
+ * <p>
+ * 该实例仅供演示如何验证签名，请务必不要直接 copy 到实际项目中使用。
  */
 public class WebhooksVerifyExample {
 
@@ -36,6 +38,7 @@ public class WebhooksVerifyExample {
 
     /**
      * 验证 webhooks 签名，仅供参考
+     *
      * @param args
      * @throws Exception
      */
@@ -56,10 +59,16 @@ public class WebhooksVerifyExample {
 
         boolean result = verifyData(webhooksRawPostData, signature, getPubKey());
         System.out.println("验签结果：" + (result ? "通过" : "失败"));
+
+        XPayObject obj = Webhooks.getObject(webhooksRawPostData);
+        Payment payment = (Payment) obj;
+        System.out.println("webhook data:" + payment);
+
     }
 
     /**
      * 读取文件, 部署 web 程序的时候, 签名和验签内容需要从 request 中获得
+     *
      * @param filePath
      * @return
      * @throws Exception
@@ -85,6 +94,7 @@ public class WebhooksVerifyExample {
 
     /**
      * 获得公钥
+     *
      * @return
      * @throws Exception
      */
@@ -102,6 +112,7 @@ public class WebhooksVerifyExample {
 
     /**
      * 验证签名
+     *
      * @param dataString
      * @param signatureString
      * @param publicKey
