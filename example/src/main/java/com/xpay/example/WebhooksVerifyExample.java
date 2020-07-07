@@ -40,6 +40,7 @@ public class WebhooksVerifyExample {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
+        Main.projectDir = System.getProperty("user.dir") + "/example/";
         runDemos();
     }
 
