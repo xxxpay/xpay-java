@@ -201,7 +201,7 @@
 - 增加 event sdk
 
 ## 2.0.4
-- 更改 sdk 目录格式，修复wx_pub渠道timeStamp 类型问题。
+- 更改 sdk 目录格式，修复wx_pub渠道 timestamp 类型问题。
 
 ## 2.0.3
 - 增加 apple pay ，重写 getcredential 方法。
@@ -211,7 +211,7 @@
 
 ## 2.0.1
 #### 更改
-修改 wx credential 里的 timeStamp 类型为字符串，防止变成科学计数法
+修改 wx credential 里的 timestamp 类型为字符串，防止变成科学计数法
 
 ## 2.0.0
 #### 更改

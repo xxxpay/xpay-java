@@ -61,7 +61,7 @@ public class HttpURLConnectionClient extends HttpClient {
 
         userAgentHeadersMap.put("User-Agent", Collections.singletonList(buildUserAgentString()));
         userAgentHeadersMap.put(
-                "X-XPay-Client-User-Agent", Collections.singletonList(buildXPayClientUserAgentString()));
+                "XPay-Client-User-Agent", Collections.singletonList(buildXPayClientUserAgentString()));
 
         return request.getHeaders().withAdditionalHeaders(userAgentHeadersMap);
     }
