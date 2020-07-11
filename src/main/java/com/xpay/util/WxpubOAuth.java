@@ -198,7 +198,7 @@ public class WxpubOAuth {
         //注意这里参数名必须全部小写，且必须有序
         String string1 = "jsapi_ticket=" + jsapiTicket +
                 "&noncestr=" + wx_pub.get("nonceStr").getAsString() +
-                "&timestamp=" + wx_pub.get("timestamp").getAsString() +
+                "&timestamp=" + wx_pub.get("timeStamp").getAsString() +
                 "&url=" + url;
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
