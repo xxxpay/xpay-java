@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xpay</groupId>
   <artifactId>xpay-java</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <dependencies>
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -19,5 +19,5 @@
     </dependency>
   </dependencies>
   <name>xpay-java</name>
-  <url>https://github.com/xpay/xpay-java</url>
+  <url>https://github.com/xxxpay/xpay-java</url>
 </project>
