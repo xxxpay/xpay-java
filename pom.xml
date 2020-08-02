@@ -4,20 +4,57 @@
   <groupId>com.xpay</groupId>
   <artifactId>xpay-java</artifactId>
   <version>1.0.1</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <java.version>8</java.version>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <junit-version>4.13</junit-version>
+    <okhttp-version>3.14.7</okhttp-version>
+    <threetenbp-version>1.4.3</threetenbp-version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.8.5</version>
-      <scope>runtime</scope>
+      <version>2.8.6</version>
     </dependency>
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
       <version>1.10</version>
-      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit-version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <name>xpay-java</name>
   <url>https://github.com/xxxpay/xpay-java</url>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <outputDirectory>target/classes</outputDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
