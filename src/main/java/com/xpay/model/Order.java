@@ -17,7 +17,7 @@ public class Order extends APIResource {
     Boolean paid;
     Boolean refunded;
     Object app;
-    String charge;
+    String payment;
     String uid;
     String merchantOrderNo;
     Integer amount;
@@ -32,10 +32,10 @@ public class Order extends APIResource {
     Long timePaid;
     Long timeExpire;
     String coupon;
-    ChargeCollection charges;
+    ChargeCollection payments;
     String description;
     Map<String, Object> metadata;
-    ChargeEssentials chargeEssentials;
+    ChargeEssentials paymentEssentials;
     Long availableBalance;
     String receiptApp;
     String serviceApp;
@@ -218,12 +218,12 @@ public class Order extends APIResource {
         this.coupon = coupon;
     }
 
-    public ChargeCollection getCharges() {
-        return charges;
+    public ChargeCollection getPayments() {
+        return payments;
     }
 
-    public void setCharges(ChargeCollection charges) {
-        this.charges = charges;
+    public void setCharges(ChargeCollection payments) {
+        this.payments = payments;
     }
 
     public String getDescription() {
@@ -242,12 +242,12 @@ public class Order extends APIResource {
         this.metadata = metadata;
     }
 
-    public ChargeEssentials getChargeEssentials() {
-        return chargeEssentials;
+    public ChargeEssentials getPaymentEssentials() {
+        return paymentEssentials;
     }
 
-    public void setChargeEssentials(ChargeEssentials chargeEssentials) {
-        this.chargeEssentials = chargeEssentials;
+    public void setPaymentEssentials(ChargeEssentials paymentEssentials) {
+        this.paymentEssentials = paymentEssentials;
     }
 
     public Long getAvailableBalance() {
@@ -282,12 +282,12 @@ public class Order extends APIResource {
         this.availableMethods = availableMethods;
     }
 
-    public String getCharge() {
-        return charge;
+    public String getPayment() {
+        return payment;
     }
 
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setPayment(String payment) {
+        this.payment = payment;
     }
 
     public Integer getDiscountAmount() {
@@ -571,7 +571,7 @@ public class Order extends APIResource {
      *
      * @param orderId
      * @param chargeId
-     * @param options the specific options
+     * @param options  the specific options
      * @return Payment
      * @throws XPayException
      */

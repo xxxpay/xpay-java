@@ -19,20 +19,20 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountCreate() throws XPayException {
-        String userId = "U2019053010510001";
+        String userId = "123";
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("channel", "bank_account"); // [wx_pub, wx, alipay, bank_account] 其中一种
+        params.put("channel", "wx_lite"); // [wx_pub, wx, alipay, bank_account] 其中一种
         Map<String, Object> recipient = new HashMap<String, Object>(); // recipient 参数请参考各个渠道,以下是 alipay 参数
-        recipient.put("account", "6222987656770001"); // 接收者银行账号/卡号
-        recipient.put("name", "USER NAME"); // 接收者姓名
-        recipient.put("type", "b2c"); // 转账类型
-        recipient.put("open_bank_code", "0102"); // 户银行编号
-        recipient.put("open_bank", "工商银行");
-        recipient.put("card_type", 0);
-        recipient.put("sub_bank", "招商银行股份有限公司上海陆家嘴支行");
-        recipient.put("sub_bank_code", "308290003773");
-        recipient.put("prov", "上海市");
-        recipient.put("city", "上海市");
+        recipient.put("account", "123456"); // 接收者银行账号/卡号
+//        recipient.put("name", "USER NAME"); // 接收者姓名
+//        recipient.put("type", "b2c"); // 转账类型
+//        recipient.put("open_bank_code", "0102"); // 户银行编号
+//        recipient.put("open_bank", "工商银行");
+//        recipient.put("card_type", 0);
+//        recipient.put("sub_bank", "招商银行股份有限公司上海陆家嘴支行");
+//        recipient.put("sub_bank_code", "308290003773");
+//        recipient.put("prov", "上海市");
+//        recipient.put("city", "上海市");
 
         params.put("recipient", recipient);
 
@@ -49,28 +49,32 @@ public class SettleAccountTest extends XPayTestBase {
     /**
      * 查询结算账户
      */
-    @Test public void testSettleAccountRetrieve() throws XPayException {
-        String userId = "U2019053010510001";
-        Map<String, Object> params = new HashMap<>();
-        params.put("page", 1);
-        params.put("per_page", 3);
-        SettleAccountCollection list = SettleAccount.list(userId, params);
-        if (list.getData().size() > 0) {
-            String settleAccountId = list.getData().get(0).getId(); // 结算账户对象 ID
-
-            SettleAccount obj = SettleAccount.retrieve(userId, settleAccountId); // 查询结算账户方法
-
-            assertEquals("object should be settle_account", "settle_account", obj.getObject());
-            assertEquals("id should be same", settleAccountId, obj.getId());
-        } else {
-            System.out.println("结算账户列表为空");
-        }
+    @Test
+    public void testSettleAccountRetrieve() throws XPayException {
+//        String userId = "123";
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("page", 1);
+//        params.put("per_page", 3);
+//        SettleAccountCollection list = SettleAccount.list(userId, params);
+//        if (list.getData().size() > 0) {
+//            String settleAccountId = list.getData().get(0).getId(); // 结算账户对象 ID
+//
+//            SettleAccount obj = SettleAccount.retrieve(userId, "a1b3b64a1035475c81414fb5af5e0ff8"); // 查询结算账户方法
+//
+//            assertEquals("object should be settle_account", "settle_account", obj.getObject());
+//            assertEquals("id should be same", settleAccountId, obj.getId());
+//        } else {
+//            System.out.println("结算账户列表为空");
+//        }
+        SettleAccount obj = SettleAccount.retrieve("123", "a1b3b64a1035475c81414fb5af5e0ff8"); // 查询结算账户方法
+        System.out.println(obj);
     }
 
     /**
      * 查询结算账户列表
      */
-    @Test public void testSettleAccountList() throws XPayException {
+    @Test
+    public void testSettleAccountList() throws XPayException {
         String userId = "U2019053010510001";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -84,7 +88,8 @@ public class SettleAccountTest extends XPayTestBase {
     /**
      * 删除结算账户
      */
-    @Test public void testSettleAccountDelete() throws XPayException {
+    @Test
+    public void testSettleAccountDelete() throws XPayException {
         String userId = "U2019053010510001";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
@@ -105,7 +110,8 @@ public class SettleAccountTest extends XPayTestBase {
     /**
      * 结算账户更新（存管相关）
      */
-    @Test public void testSettleAccountUpdate() throws XPayException {
+    @Test
+    public void testSettleAccountUpdate() throws XPayException {
         String userId = "U2019053010510001";
         String id = "320119071220443300000101";
         Map<String, Object> params = new HashMap<>();
@@ -132,7 +138,8 @@ public class SettleAccountTest extends XPayTestBase {
     /**
      * 结算账户更新手机号（存管相关）
      */
-    @Test public void testSettleAccountUpdateMobile() throws XPayException {
+    @Test
+    public void testSettleAccountUpdateMobile() throws XPayException {
         String userId = "U2019053010510001";
         String id = "320119071220443300000101";
         Map<String, Object> params = new HashMap<>();
@@ -146,7 +153,8 @@ public class SettleAccountTest extends XPayTestBase {
     /**
      * 结算账号打款验证接口（存管相关）
      */
-    @Test public void testSettleAccountVerify() throws XPayException {
+    @Test
+    public void testSettleAccountVerify() throws XPayException {
         String userId = "U2019053010510001";
         String id = "320119071220443300000101";
         Map<String, Object> params = new HashMap<>();

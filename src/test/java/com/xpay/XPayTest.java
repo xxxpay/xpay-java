@@ -17,7 +17,8 @@ import static org.junit.Assert.*;
  */
 public class XPayTest {
 
-    @BeforeClass public static void initApiKey() {
+    @BeforeClass
+    public static void initApiKey() {
         XPay.overrideApiBase(XPayTestData.getApiBase());
         XPay.apiKey = XPayTestData.getApiKey();
         // 建议使用 PKCS8 编码的私钥，可以用 openssl 将 PKCS1 转成 PKCS8
@@ -25,33 +26,36 @@ public class XPayTest {
         XPay.DEBUG = true;
     }
 
-    @Test public void testSetApiKey() {
+    @Test
+    public void testSetApiKey() {
         assertEquals("apiKey should be set", "sk_test_ibbTe5jLGCi5rzfH4OqPW9KC", XPay.apiKey);
     }
 
-    @Test public void testVerifyVersions() {
+    @Test
+    public void testVerifyVersions() {
         assertEquals("XPay.VERSION should match", "2.4.0", XPay.VERSION);
     }
 
-    @Test public void testCreateCharge() {
+    @Test
+    public void testCreateCharge() {
         String appId = XPayTestData.getAppID();
 
         Payment payment = null;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
-        chargeMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
+        chargeMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         chargeMap.put("currency", "cny");
         chargeMap.put("subject", "Your Subject");
         chargeMap.put("body", "Your Body");
         String orderNo = "orderno" + new Date().getTime();
         chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
-        chargeMap.put("channel", "alipay");// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
+        chargeMap.put("channel", "wx_lite");// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
         chargeMap.put("client_ip", "192.168.1.132"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);
         chargeMap.put("app", app);
 
         Map<String, Object> extra = new HashMap<String, Object>();
-//        extra.put("success_url", "http://127.0.0.1/succeeded");
+        extra.put("open_id", "123456");
         chargeMap.put("extra", extra);
         try {
             // 发起 payment 创建请求
@@ -68,25 +72,28 @@ public class XPayTest {
         assertEquals("payment order_no", orderNo, payment.getOrderNo());
     }
 
-    @Test public void testWebhooksParseCharge() {
+    @Test
+    public void testWebhooksParseCharge() {
         String webhookData = XPayTestData.getChargeWebhooksData();
 
         XPayObject obj = Webhooks.getObject(webhookData);
 
         assertTrue("object should be an instance of Payment", obj instanceof Payment);
-        assertEquals("object should be charge", "charge", ((Payment)obj).getObject());
+        assertEquals("object should be charge", "charge", ((Payment) obj).getObject());
     }
 
-    @Test public void testWebhooksParseBatchTransfer() {
+    @Test
+    public void testWebhooksParseBatchTransfer() {
         String webhookData = XPayTestData.getBatchTransferWebhooksData();
 
         XPayObject obj = Webhooks.getObject(webhookData);
 
         assertTrue("object should be an instance of BatchTransfer", obj instanceof BatchTransfer);
-        assertEquals("object should be batch_transfer", "batch_transfer", ((BatchTransfer)obj).getObject());
+        assertEquals("object should be batch_transfer", "batch_transfer", ((BatchTransfer) obj).getObject());
     }
 
-    @Test public void testGetChargeList() {
+    @Test
+    public void testGetChargeList() {
         try {
             Integer limit = 3;
             Map<String, Object> params = new HashMap<String, Object>();
@@ -102,7 +109,8 @@ public class XPayTest {
         }
     }
 
-    @Test public void testGetBatchRefundList() {
+    @Test
+    public void testGetBatchRefundList() {
         try {
             Integer limit = 3;
             Map<String, Object> params = new HashMap<String, Object>();
@@ -116,29 +124,25 @@ public class XPayTest {
         }
     }
 
-    @Test public void testCreateTransfer() {
+    @Test
+    public void testCreateTransfer() {
         try {
             String orderNo = "2017" + new Date().getTime();
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("amount", 1010);
+            params.put("amount", 100);
             params.put("currency", "cny");
-            params.put("type",  "b2c");
-            params.put("order_no",  orderNo);
-            params.put("channel",  "wx_pub");
-            params.put("recipient", "openid-kaoshrbgafsnrxxcsds");
+            params.put("type", "b2c");
+            params.put("order_no", orderNo);
+            params.put("channel", "wx_lite");
+            params.put("recipient", "123456");
 
-//            params.put("channel",  "unionpay");
-//            Map<String, String> extra = new HashMap<String, String>();
-//            extra.put("open_bank_code", "0105");
-//            extra.put("card_number", "6222001022020034");
-//            extra.put("user_name", "USER NAME");
-//            params.put("extra", extra);
 
             params.put("description", "Your description.");
             Map<String, String> app = new HashMap<String, String>();
             app.put("id", XPayTestData.getAppID());
             params.put("app", app);
             Transfer obj = Transfer.create(params);
+            System.out.println(obj);
 
             assertEquals("object should be transfer", "transfer", obj.getObject());
             assertEquals("amount should be same", params.get("amount"), obj.getAmount());
@@ -150,16 +154,17 @@ public class XPayTest {
         }
     }
 
-    @Test public void testCreateBatchTransfer() throws XPayException {
+    @Test
+    public void testCreateBatchTransfer() throws XPayException {
 
         String batchNo = "2017" + new Date().getTime();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("app", XPayTestData.getAppID());
         params.put("amount", 1000);
         params.put("currency", "cny");
-        params.put("type",  "b2c");
-        params.put("batch_no",  batchNo);
-        params.put("channel",  "alipay");
+        params.put("type", "b2c");
+        params.put("batch_no", batchNo);
+        params.put("channel", "alipay");
         params.put("description", "Batch transfer description.");
 
         List<Map<String, Object>> recipients = new ArrayList<>();
@@ -194,7 +199,8 @@ public class XPayTest {
         }
     }
 
-    @Test public void testReverseCharge() {
+    @Test
+    public void testReverseCharge() {
         String appId = XPayTestData.getAppID();
 
         String chargeId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
@@ -212,7 +218,8 @@ public class XPayTest {
         }
     }
 
-    @Test public void testRetrieveRefund() {
+    @Test
+    public void testRetrieveRefund() {
         String chargeId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
         String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
 
@@ -226,5 +233,36 @@ public class XPayTest {
 
         assertEquals("refund object should be charge", "refund", refund.getObject());
         assertNotNull("refund extra not null", refund.getExtra());
+    }
+
+    @Test
+    public void testRetrievePayment() {
+        String paymentId = "52ef517d056d40d591aca2653bafba9e";
+
+        Payment payment = null;
+        try {
+            payment = Payment.retrieve(paymentId);
+            System.out.println(payment);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @Test
+    public void testRetrieveTransfer() {
+        String paymentId = "4ab7c362385e4c328895d383902ddec8";
+
+        Transfer transfer = null;
+        try {
+            transfer = Transfer.retrieve(paymentId);
+            System.out.println(transfer);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

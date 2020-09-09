@@ -22,17 +22,19 @@ public class UserTest extends XPayTestBase {
      */
     @Test public void testUserCreate() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("id", "test_user_" + System.currentTimeMillis()); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
+        params.put("id", "123"); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
         params.put("address", "Shanghai, China");       // 用户地址, 可选
         params.put("avatar", "https://example.com/avatar.png"); // 头像, 可选
         params.put("email", params.get("id") + "@gmail.com");   // 邮箱地址, 可选
-        params.put("gender", System.currentTimeMillis() % 2 == 1 ? "MALE" : "FEMALE"); // 性别。MALE：男，FEMALE：女, 可选
+        params.put("gender","MALE"); // 性别。MALE：男，FEMALE：女, 可选
         params.put("mobile", "17602101010");    // 手机号码, 可选
         Map<String, Object> metadata = new HashMap<String, Object>();
         metadata.put("custom_key", "custom_value");
         params.put("metadata", metadata);
 
         User obj = User.create(params); //创建 User 方法
+
+        System.out.println(obj);
 
         assertEquals("object should be user", "user", obj.getObject());
         assertEquals("id", params.get("id"), obj.getId());
@@ -52,9 +54,10 @@ public class UserTest extends XPayTestBase {
      * 查询单个用户 (User)
      */
     @Test public void testUserRetrieve() throws XPayException {
-        String userId = "test_user_001";
+        String userId = "123";
         User obj = User.retrieve(userId); //查询 User 方法
 
+        System.out.println(obj);
         assertEquals("object should be user", "user", obj.getObject());
         assertEquals("id", userId, obj.getId());
         assertEquals("app", XPayTestData.getAppID(), obj.getApp());
