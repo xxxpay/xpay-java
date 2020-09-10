@@ -61,7 +61,7 @@ public class HttpURLConnectionClient extends HttpClient {
 
         userAgentHeadersMap.put("User-Agent", Collections.singletonList(buildUserAgentString()));
         userAgentHeadersMap.put(
-                "X-XPay-Client-User-Agent", Collections.singletonList(buildXPayClientUserAgentString()));
+                "X-Client-User-Agent", Collections.singletonList(buildXPayClientUserAgentString()));
 
         return request.getHeaders().withAdditionalHeaders(userAgentHeadersMap);
     }
@@ -80,10 +80,10 @@ public class HttpURLConnectionClient extends HttpClient {
         conn.setRequestMethod(request.method.name());
 
         String requestTime = currentTimeString();
-        conn.setRequestProperty("XPay-Request-Timestamp", requestTime);
+        conn.setRequestProperty("X-Request-Timestamp", requestTime);
         String signature = buildXPaySignature(request, requestTime);
         if (signature != null) {
-            conn.setRequestProperty("XPay-Signature", signature);
+            conn.setRequestProperty("X-Signature", signature);
         }
 
         if (request.content != null) {

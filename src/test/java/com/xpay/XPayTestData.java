@@ -5,15 +5,15 @@ package com.xpay;
  */
 public class XPayTestData {
     public static String getApiBase() {
-        return "https://api.lucfish.com/xpay";
+        return "http://api.lucfish.com/xpay";
     }
 
     public static String getApiKey() {
-        return "XXXXXXXXXXXXXXXXXXXXXXX";
+        return "xxxxxxxxxxxxxxxxxxxxxxx";
     }
 
     public static String getAppID() {
-        return "XXXXXXXXXXXXXXXXXXXXXXXX";
+        return "xxxxxxxxxxxxxxxxxxxxxxx";
     }
 
     public static String getPKCS8PrivateKey() {

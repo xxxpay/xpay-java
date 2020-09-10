@@ -14,6 +14,10 @@ build.xml
 output/
 project.properties
 
+*.properties
+*.pem
+
+
 build/
 .idea/
 bin/

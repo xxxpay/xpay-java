@@ -133,7 +133,7 @@ public class XPayTest {
             params.put("currency", "cny");
             params.put("type", "b2c");
             params.put("order_no", orderNo);
-            params.put("channel", "wx_lite");
+            params.put("channel", "wx");
             params.put("recipient", "123456");
 
 
@@ -253,7 +253,7 @@ public class XPayTest {
 
     @Test
     public void testRetrieveTransfer() {
-        String paymentId = "4ab7c362385e4c328895d383902ddec8";
+        String paymentId = "0a6cf2488a094c2e8fc5aced13facdfc";
 
         Transfer transfer = null;
         try {
