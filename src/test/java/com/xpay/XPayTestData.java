@@ -5,7 +5,7 @@ package com.xpay;
  */
 public class XPayTestData {
     public static String getApiBase() {
-        return "http://api.lucfish.com/xpay";
+        return "https://api.lucfish.com/xpay";
     }
 
     public static String getApiKey() {

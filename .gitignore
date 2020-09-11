@@ -24,7 +24,7 @@ bin/
 *.iml
 
 !gradle-wrapper.jar
-/target
+target/
 
 # User-specific stuff:
 .idea/workspace.xml
