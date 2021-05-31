@@ -20,17 +20,17 @@ public class RechargeTest extends XPayTestBase {
         params.put("user", "user_test_02"); // 充值目标用户 ID, 必传
         params.put("user_fee", 10);     // 用户充值收取的手续费，单位分，不得大于 amount，不可和 balance_bonus[amount] 同时传，默认 0。可选
         params.put("description", "Recharge description."); // 描述, 可选
-        Map<String, Object> charge = new HashMap<>();
-        charge.put("amount", 100); // 用户实际支付金额，单位分, 必传
-        charge.put("channel", "alipay_wap"); // 支付使用的第三方支付渠道, 必传
-        charge.put("order_no", "2017" + System.currentTimeMillis()); // 商户订单号，适配每个渠道对此参数的要求，必须在商户系统内唯一, 必传
-        charge.put("client_ip", "127.0.0.1");   // 客户端的 IP，IPv4，默认 127.0.0.1, 可选
-        charge.put("subject", "Recharge subject"); // 充值标题，该参数最长为 32 个 Unicode 字符, 必传
-        charge.put("body", "Recharge body"); // 充值描述信息，该参数最长为 128 个 Unicode 字符, 必传
+        Map<String, Object> payment = new HashMap<>();
+        payment.put("amount", 100); // 用户实际支付金额，单位分, 必传
+        payment.put("channel", "alipay_wap"); // 支付使用的第三方支付渠道, 必传
+        payment.put("order_no", "2017" + System.currentTimeMillis()); // 商户订单号，适配每个渠道对此参数的要求，必须在商户系统内唯一, 必传
+        payment.put("client_ip", "127.0.0.1");   // 客户端的 IP，IPv4，默认 127.0.0.1, 可选
+        payment.put("subject", "Recharge subject"); // 充值标题，该参数最长为 32 个 Unicode 字符, 必传
+        payment.put("body", "Recharge body"); // 充值描述信息，该参数最长为 128 个 Unicode 字符, 必传
         Map<String, Object> extra = new HashMap<>(); // extra: 根据不同渠道传入相应的参数
         extra.put("success_url", "http://www.xpay.com");
-        charge.put("extra", extra);
-        params.put("charge", charge);
+        payment.put("extra", extra);
+        params.put("payment", payment);
         Recharge obj = Recharge.create(params); // 创建 recharge 方法
         assertEquals("object should be recharge", "recharge", obj.getObject());
     }

@@ -1,7 +1,7 @@
 package com.xpay.net;
 
 /**
- * Handler XPay response when you request charge from xpay
+ * Handler XPay response when you request payment from xpay
  */
 public class XPayResponse {
 

@@ -2,7 +2,7 @@
  * XPay Server SDK
  * 说明：
  * 以下代码只是为了方便商户测试而提供的样例代码，商户可根据自己网站需求按照技术文档编写, 并非一定要使用该代码。
- * 接入支付流程参考开发者中心：https://www.xpay.com/docs/server/charge ，文档可筛选后端语言和接入渠道。
+ * 接入支付流程参考开发者中心：https://www.xpay.com/docs/server/payment ，文档可筛选后端语言和接入渠道。
  * 该代码仅供学习和研究 XPay SDK 使用，仅供参考。
  */
 package com.xpay.example;
@@ -52,7 +52,7 @@ public class PaymentExample {
      * @return Payment
      */
     public Payment createPayment() {
-        Payment charge = null;
+        Payment payment = null;
         String channel = "wx";
 
         Map<String, Object> chargeMap = new HashMap<String, Object>();
@@ -73,37 +73,37 @@ public class PaymentExample {
 
         try {
             //发起交易请求
-            charge = Payment.create(chargeMap);
+            payment = Payment.create(chargeMap);
             // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
-            String chargeString = charge.toString();
+            String chargeString = payment.toString();
             System.out.println(chargeString);
         } catch (XPayException e) {
             e.printStackTrace();
         }
 
-        return charge;
+        return payment;
     }
 
     /**
      * 查询 Payment
      *
-     * 该接口根据 charge Id 查询对应的 charge 。
+     * 该接口根据 payment Id 查询对应的 payment 。
      * 参考文档：https://www.xpay.com/api#api-c-inquiry
      *
      * 参考文档： https://www.xpay.com/api#api-expanding
      * @param id
      */
     public Payment retrieve(String id) {
-        Payment charge = null;
+        Payment payment = null;
         try {
             Map<String, Object> params = new HashMap<String, Object>();
-            charge = Payment.retrieve(id, params);
-            System.out.println(charge);
+            payment = Payment.retrieve(id, params);
+            System.out.println(payment);
         } catch (XPayException e) {
             e.printStackTrace();
         }
 
-        return charge;
+        return payment;
     }
 
     /**
@@ -112,15 +112,15 @@ public class PaymentExample {
      * @param id
      */
     public Payment reverse(String id) {
-        Payment charge = null;
+        Payment payment = null;
         try {
-            charge = Payment.reverse(id);
-            System.out.println(charge);
+            payment = Payment.reverse(id);
+            System.out.println(payment);
         } catch (XPayException e) {
             e.printStackTrace();
         }
 
-        return charge;
+        return payment;
     }
 
     /**
@@ -477,7 +477,7 @@ public class PaymentExample {
         /**
          * 对于 p_no, seq , m_uid , mobile 这几个参数：
          * 1. 这几个参数是用户自定义的。
-         * 2. 对于同一个终端用户每次请求 charge 务必使用同一套参数（确保每个参数都不变），
+         * 2. 对于同一个终端用户每次请求 payment 务必使用同一套参数（确保每个参数都不变），
          * 任意参数变更都会导致用户重新签约，同一个用户和招行重新签约的次数有限制，超限制就会无法签约 ，导致用户无法使用。
          */
 

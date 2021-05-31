@@ -120,9 +120,9 @@ public class OrderTest extends XPayTestBase {
     public void testOrderChargeRetrieve() throws XPayException {
         // 查询订单中 Payment 对象
         // 参数一: order id
-        // 参数二: charge id
+        // 参数二: payment id
         Payment obj = Order.retrieveCharge("2001708220000221911", "ch_88mbTKu9mbn9mfT4KSCiHiX5");
-        assertEquals("object should be charge", "charge", obj.getObject());
+        assertEquals("object should be payment", "payment", obj.getObject());
     }
 
     /**

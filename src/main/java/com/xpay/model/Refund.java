@@ -19,15 +19,15 @@ public class Refund extends APIResource {
     String failureCode;
     String failureMsg;
     Map<String, Object> metadata;
-    String charge;
+    String payment;
     String chargeOrderNo;
     String transactionNo;
     String fundingSource;
     Map<String, Object> extra;
 
     public String getInstanceURL() {
-        if (this.charge != null) {
-            return String.format("%s/%s/refunds/%s", classURL(Payment.class), this.charge, this.getId());
+        if (this.payment != null) {
+            return String.format("%s/%s/refunds/%s", classURL(Payment.class), this.payment, this.getId());
         }
         return null;
     }
@@ -64,11 +64,11 @@ public class Refund extends APIResource {
     }
 
     public String getCharge() {
-        return charge;
+        return payment;
     }
 
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setCharge(String payment) {
+        this.payment = payment;
     }
 
     public Boolean getSucceed() {

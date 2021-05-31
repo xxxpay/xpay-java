@@ -58,7 +58,7 @@ public class CustomsExample {
         params.put("trade_no", orderNo); // 8-20 位，要求数字或字母，不允许其他字符
         params.put("customs_code", "SHANGHAI"); // https://www.xpay.com/api#海关编号说明
         params.put("amount", 10000); // 报关金额, 人民币单位：分（如金额为 100 元，此处请填 10000）
-        params.put("charge", "<CH_ID>");
+        params.put("payment", "<CH_ID>");
         params.put("app", appId);
         Map<String, Object> extra = new HashMap<String, Object>();
         // 根据不同渠道传不同参数

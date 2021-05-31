@@ -15,7 +15,7 @@ public class Customs extends APIResource {
     String tradeNo;
     String customsCode;
     Integer amount;
-    String charge;
+    String payment;
     Integer transportAmount;
     Boolean isSplit;
     String subOrderNo;
@@ -91,11 +91,11 @@ public class Customs extends APIResource {
     }
 
     public String getCharge() {
-        return charge;
+        return payment;
     }
 
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setCharge(String payment) {
+        this.payment = payment;
     }
 
     public Integer getTransportAmount() {

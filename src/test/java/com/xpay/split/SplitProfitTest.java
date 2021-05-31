@@ -17,7 +17,7 @@ public class SplitProfitTest extends XPayTestBase {
     @Test public void testCreate() throws XPayException {
         Map<String, Object> params = new HashMap<>();
         params.put("app", XPayTestData.getAppID());
-        params.put("charge", "ch_KiT4ePn9SyXDfvfPyDevn1G0"); // 交易成功的 XPay Payment ID
+        params.put("payment", "ch_KiT4ePn9SyXDfvfPyDevn1G0"); // 交易成功的 XPay Payment ID
         params.put("order_no", "2019" + System.currentTimeMillis()); // 分账单号，由商家自行生成，规则参照微信分账参数规则
         params.put("type", "split_normal"); // 分账类型: split_normal 为普通分账, split_return 为完结分账
         List<Map<String, Object>> recipients = new ArrayList<>();

@@ -27,10 +27,10 @@ import java.util.Map;
  */
 public class RefundExample {
 
-    private String charge;
+    private String payment;
 
     RefundExample(String chargeId) {
-        this.charge = chargeId;
+        this.payment = chargeId;
     }
 
     public static void runDemos() {
@@ -49,7 +49,7 @@ public class RefundExample {
     /**
      * 退款
      *
-     * 创建退款，需要先获得 charge ,然后调用 charge.getRefunds().create();
+     * 创建退款，需要先获得 payment ,然后调用 payment.getRefunds().create();
      * 参数具体说明参考：https://www.xpay.com/api#api-r-new
      *
      * 可以一次退款，也可以分批退款。
@@ -58,7 +58,7 @@ public class RefundExample {
      * @return
      */
     public Refund refund(Integer amount) {
-        if (charge == null) {
+        if (payment == null) {
             return null;
         }
         Refund refund = null;
@@ -67,7 +67,7 @@ public class RefundExample {
         params.put("amount", amount);// 退款的金额, 单位为对应币种的最小货币单位，例如：人民币为分（如退款金额为 1 元，此处请填 100）。必须小于等于可退款金额，默认为全额退款
 
         try {
-            refund = Refund.create(this.charge, params);
+            refund = Refund.create(this.payment, params);
             System.out.println(refund);
         } catch (XPayException e) {
             e.printStackTrace();
@@ -84,11 +84,11 @@ public class RefundExample {
      * @param id
      */
     public void retrieve(String id) {
-        if (charge == null) {
+        if (payment == null) {
             return;
         }
         try {
-            Refund refund = Refund.retrieve(this.charge, id);
+            Refund refund = Refund.retrieve(this.payment, id);
             System.out.println(refund);
         } catch (XPayException e) {
             e.printStackTrace();
@@ -103,13 +103,13 @@ public class RefundExample {
      *
      */
     public void all() {
-        if (charge == null) {
+        if (payment == null) {
             return;
         }
         Map<String, Object> refundParams = new HashMap<String, Object>();
         refundParams.put("limit", 3);
         try {
-            ChargeRefundCollection refunds = Refund.list(this.charge, refundParams);
+            ChargeRefundCollection refunds = Refund.list(this.payment, refundParams);
             System.out.println(refunds);
         } catch (XPayException e) {
             e.printStackTrace();

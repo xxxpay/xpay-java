@@ -16,7 +16,7 @@ public class SplitProfit extends APIResource {
     Boolean livemode;
     String app;
     Long created;
-    String charge;
+    String payment;
     String channel;
     String type;
     String orderNo;
@@ -68,11 +68,11 @@ public class SplitProfit extends APIResource {
     }
 
     public String getCharge() {
-        return charge;
+        return payment;
     }
 
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setCharge(String payment) {
+        this.payment = payment;
     }
 
     public String getChannel() {

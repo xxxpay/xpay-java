@@ -17,7 +17,7 @@ public class EventDataDeserializer implements JsonDeserializer<EventData> {
     @SuppressWarnings("rawtypes")
     static final Map<String, Class> objectMap = new HashMap<String, Class>();
     static {
-        objectMap.put("charge", Payment.class);
+        objectMap.put("payment", Payment.class);
         objectMap.put("transfer", Transfer.class);
         objectMap.put("refund", Refund.class);
         objectMap.put("red_envelope", RedEnvelope.class);

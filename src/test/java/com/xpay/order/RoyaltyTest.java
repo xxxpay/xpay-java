@@ -68,7 +68,7 @@ public class RoyaltyTest extends XPayTestBase {
     @Test public void testRoyaltyDataCreate() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("app", XPayTestData.getAppID()); // 必传
-//        params.put("charge", ""); // 条件可选，对于已经成功的 order 必传该字段
+//        params.put("payment", ""); // 条件可选，对于已经成功的 order 必传该字段
         List<Map<String, Object>> royaltyUsers = new ArrayList<>();
         Map<String, Object> user = new HashMap<String, Object>();
         user.put("user", "U201908030002");

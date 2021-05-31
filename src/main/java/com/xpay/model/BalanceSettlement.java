@@ -13,7 +13,7 @@ public class BalanceSettlement extends AppBasedResource {
     Integer amount;
     Integer amountRefunded;
     Long created;
-    String charge;
+    String payment;
     Boolean livemode;
     String failureMsg;
     Boolean refunded;
@@ -74,11 +74,11 @@ public class BalanceSettlement extends AppBasedResource {
     }
 
     public String getCharge() {
-        return charge;
+        return payment;
     }
 
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setCharge(String payment) {
+        this.payment = payment;
     }
 
     public Boolean getLivemode() {

@@ -174,16 +174,16 @@ public class WxpubOAuth {
 
     /**
      * 生成微信公众号 js sdk signature
-     * @param charge charge 对象JSON字符串
+     * @param payment payment 对象JSON字符串
      * @param jsapiTicket
      * @param url
      * @return 签名
      */
-    public static String getSignature(String charge, String jsapiTicket, String url) {
-        if (null == charge || null == jsapiTicket || charge.isEmpty() || jsapiTicket.isEmpty())
+    public static String getSignature(String payment, String jsapiTicket, String url) {
+        if (null == payment || null == jsapiTicket || payment.isEmpty() || jsapiTicket.isEmpty())
             return null;
         JsonParser jp = new JsonParser();
-        JsonObject chargeJson = jp.parse(charge).getAsJsonObject();
+        JsonObject chargeJson = jp.parse(payment).getAsJsonObject();
         if (!chargeJson.has("credential")) {
             return null;
         }
