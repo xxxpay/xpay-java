@@ -19,7 +19,7 @@ import java.util.Map;
  *
  * 该实例程序演示了如何从 XPay 服务器进行退款操作。
  *
- * 开发者需要填写 apiKey 和 chargeId ,
+ * 开发者需要填写 apiKey 和 paymentId ,
  *
  * apiKey 有 TestKey 和 LiveKey 两种。
  *
@@ -29,15 +29,15 @@ public class RefundExample {
 
     private String payment;
 
-    RefundExample(String chargeId) {
-        this.payment = chargeId;
+    RefundExample(String paymentId) {
+        this.payment = paymentId;
     }
 
     public static void runDemos() {
 
-        String chargeId = "ch_5CWrz5rnz9GS84arXHLiPOqL";
+        String paymentId = "ch_5CWrz5rnz9GS84arXHLiPOqL";
 
-        RefundExample refundExample = new RefundExample(chargeId);
+        RefundExample refundExample = new RefundExample(paymentId);
 //        System.out.println("------- 创建 refund -------");
 //        Refund refund = refundExample.refund(1);
 //        System.out.println("------- 查询 refund -------");

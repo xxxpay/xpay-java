@@ -21,16 +21,16 @@ create(Map<String, Object> params)
 ``` java
 Map<String, Object> paymentMap = new HashMap<String, Object>();
 paymentMap.put("amount", 100); // 金额，单位为分，例 100 表示 1.00 元，233 表示 2.33 元
-chargeMap.put("currency", "cny");
-chargeMap.put("subject", "Your Subject");
-chargeMap.put("body", "Your Body");
-chargeMap.put("order_no", "orderNo"); // 订单号，请参考官网文档格式说明
-chargeMap.put("channel", "alipay"); // 渠道字段
-chargeMap.put("client_ip", "127.0.0.1"); // 客户端的 IP 地址
+paymentMap.put("currency", "cny");
+paymentMap.put("subject", "Your Subject");
+paymentMap.put("body", "Your Body");
+paymentMap.put("order_no", "orderNo"); // 订单号，请参考官网文档格式说明
+paymentMap.put("channel", "alipay"); // 渠道字段
+paymentMap.put("client_ip", "127.0.0.1"); // 客户端的 IP 地址
 Map<String, String> app = new HashMap<String, String>();
 app.put("id", APP_ID);
-chargeMap.put("app", app);
-Payment payment = Payment.create(chargeMap);
+paymentMap.put("app", app);
+Payment payment = Payment.create(paymentMap);
 System.out.println(payment);
 ```
 
@@ -57,13 +57,13 @@ list(Map<String, Object> params)
 返回：ChargeCollection  
 示例：
 ``` java
-Map<String, Object> chargeParams = new HashMap<String, Object>();
+Map<String, Object> paymentParams = new HashMap<String, Object>();
 app.put("id", APP_ID);
-chargeParams.put("app", app);
-chargeParams.put("limit", 3);
+paymentParams.put("app", app);
+paymentParams.put("limit", 3);
 Map<String, String> app = new HashMap<String, String>();
-ChargeCollection charges = Payment.list(chargeParams);
-System.out.println(charges);
+ChargeCollection payments = Payment.list(paymentParams);
+System.out.println(payments);
 ```
 
 ##### 撤销 Payment
@@ -180,9 +180,9 @@ list(Map<String, Object> params)
 示例：
 ``` java
 RedEnvelopeCollection redEnvelopeCollection = null;
-Map<String, Object> chargeParams = new HashMap<String, Object>();
-chargeParams.put("limit", 3);
-RedEnvelopeCollection redEnvelopeCollection = RedEnvelope.list(chargeParams);
+Map<String, Object> paymentParams = new HashMap<String, Object>();
+paymentParams.put("limit", 3);
+RedEnvelopeCollection redEnvelopeCollection = RedEnvelope.list(paymentParams);
 ```
 
 #### Webhooks

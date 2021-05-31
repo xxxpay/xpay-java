@@ -217,36 +217,36 @@ public class Refund extends APIResource {
      * @return Refund
      * @throws XPayException
      */
-    public static Refund retrieve(String chargeId, String id, RequestOptions options)
+    public static Refund retrieve(String paymentId, String id, RequestOptions options)
             throws XPayException {
-        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/refunds/%s", instanceURL(Payment.class, chargeId), id),null, Refund.class, options);
+        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/refunds/%s", instanceURL(Payment.class, paymentId), id),null, Refund.class, options);
     }
 
     /**
      * 查询 refund 列表
      *
-     * @param chargeId
+     * @param paymentId
      * @param params
      * @return ChargeRefundCollection
      * @throws XPayException
      */
-    public static ChargeRefundCollection list(String chargeId, Map<String, Object>params)
+    public static ChargeRefundCollection list(String paymentId, Map<String, Object>params)
             throws XPayException {
-        return list(chargeId, params, null);
+        return list(paymentId, params, null);
     }
 
     /**
      * 查询 refund 列表
      *
-     * @param chargeId
+     * @param paymentId
      * @param params
      * @param options the specific options
      * @return ChargeRefundCollection
      * @throws XPayException
      */
-    public static ChargeRefundCollection list(String chargeId, Map<String, Object>params, RequestOptions options)
+    public static ChargeRefundCollection list(String paymentId, Map<String, Object>params, RequestOptions options)
             throws XPayException {
-        return request(RequestMethod.GET, String.format("%s/refunds", instanceURL(Payment.class, chargeId)),
+        return request(RequestMethod.GET, String.format("%s/refunds", instanceURL(Payment.class, paymentId)),
                 params, ChargeRefundCollection.class, options);
     }
 }

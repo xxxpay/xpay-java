@@ -55,28 +55,28 @@ public class PaymentExample {
         Payment payment = null;
         String channel = "wx";
 
-        Map<String, Object> chargeMap = new HashMap<String, Object>();
-        chargeMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
-        chargeMap.put("currency", "cny");
-        chargeMap.put("subject", "Your Subject");
-        chargeMap.put("body", "Your Body");
+        Map<String, Object> paymentMap = new HashMap<String, Object>();
+        paymentMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
+        paymentMap.put("currency", "cny");
+        paymentMap.put("subject", "Your Subject");
+        paymentMap.put("body", "Your Body");
         String orderNo = new Date().getTime() + Main.randomString(7);
-        chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
-        chargeMap.put("channel", channel);// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
-        chargeMap.put("client_ip", "127.0.0.1"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
+        paymentMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
+        paymentMap.put("channel", channel);// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
+        paymentMap.put("client_ip", "127.0.0.1"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);
-        chargeMap.put("app", app);
+        paymentMap.put("app", app);
 
         // extra 取值请查看相应方法说明
-        chargeMap.put("extra", channelExtra(channel));
+        paymentMap.put("extra", channelExtra(channel));
 
         try {
             //发起交易请求
-            payment = Payment.create(chargeMap);
+            payment = Payment.create(paymentMap);
             // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
-            String chargeString = payment.toString();
-            System.out.println(chargeString);
+            String paymentString = payment.toString();
+            System.out.println(paymentString);
         } catch (XPayException e) {
             e.printStackTrace();
         }
@@ -130,10 +130,10 @@ public class PaymentExample {
      * 用户可以通过添加 limit 参数自行设置查询数目，最多一次不能超过 100 条。
      *
      * 该接口同样可以使用 expand 参数。
-     * @return chargeCollection
+     * @return paymentCollection
      */
     public ChargeCollection list() {
-        ChargeCollection chargeCollection = null;
+        ChargeCollection paymentCollection = null;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("limit", 3);
         Map<String, String> app = new HashMap<String, String>();
@@ -141,13 +141,13 @@ public class PaymentExample {
         params.put("app", app); // app 参数为必填参数。
 
         try {
-            chargeCollection = Payment.list(params);
-            System.out.println(chargeCollection);
+            paymentCollection = Payment.list(params);
+            System.out.println(paymentCollection);
         } catch (XPayException e) {
             e.printStackTrace();
         }
 
-        return chargeCollection;
+        return paymentCollection;
     }
 
     private Map<String, Object> channelExtra(String channel) {

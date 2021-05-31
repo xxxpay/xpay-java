@@ -69,9 +69,9 @@ public class WxPubOAuthExample {
             e.printStackTrace();
         }
 
-//        PaymentExample chargeExample = new PaymentExample(appId);
+//        PaymentExample paymentExample = new PaymentExample(appId);
 //        openid = "USER_OPENID";
-//        chargeExample.createPayment();
+//        paymentExample.createPayment();
     }
 
     public static void jsapiSignatureDemo() throws UnsupportedEncodingException {
@@ -79,8 +79,8 @@ public class WxPubOAuthExample {
         String ticket = WxpubOAuth.getJsapiTicket(wxAppId, wxAppSecret);
         System.out.println("ticket " + ticket);
         // 创建 Payment
-        PaymentExample chargeExample = new PaymentExample(appId);
-        Payment payment = chargeExample.createPayment(); // wx_pub
+        PaymentExample paymentExample = new PaymentExample(appId);
+        Payment payment = paymentExample.createPayment(); // wx_pub
         // 获得签名
         String signature = WxpubOAuth.getSignature(payment.toString(), ticket, redirectUrl);
         System.out.println("------- JSAPI 签名 -------");

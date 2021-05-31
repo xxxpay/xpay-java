@@ -38,18 +38,18 @@ XPay.appId = "<APP_ID>";
 Map<String, Object> paymentMap = new HashMap<String, Object>();
 // 某些渠道需要添加extra参数，具体参数详见接口文档
 paymentMap.put("amount", 100);
-chargeMap.put("currency", "cny");
-chargeMap.put("subject", "Your Subject");
-chargeMap.put("body", "Your Body");
-chargeMap.put("order_no", "123456789");
-chargeMap.put("channel", "alipay");
-chargeMap.put("client_ip", "127.0.0.1");
+paymentMap.put("currency", "cny");
+paymentMap.put("subject", "Your Subject");
+paymentMap.put("body", "Your Body");
+paymentMap.put("order_no", "123456789");
+paymentMap.put("channel", "alipay");
+paymentMap.put("client_ip", "127.0.0.1");
 Map<String, String> app = new HashMap<String, String>();
 app.put("id", "YOUR_APP_ID");
-chargeMap.put("app", app);
+paymentMap.put("app", app);
 try {
     //发起交易请求
-    Payment payment = Payment.create(chargeMap);
+    Payment payment = Payment.create(paymentMap);
     System.out.println(payment.toString());
 } catch (XPayException e) {
     e.printStackTrace();

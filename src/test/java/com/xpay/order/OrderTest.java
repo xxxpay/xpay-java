@@ -137,7 +137,7 @@ public class OrderTest extends XPayTestBase {
         // 查询订单中 Payment 列表
         // 参数一: orderId
         // 参数二: params
-        PaymentCollection objs = Order.chargeList("2001708220000221911", params);
+        PaymentCollection objs = Order.paymentList("2001708220000221911", params);
         assertEquals("object should be list", "list", objs.getObject());
     }
 

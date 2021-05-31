@@ -22,9 +22,9 @@ public class ChargeDeserializer implements JsonDeserializer<Payment> {
     @Override
     public Payment deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
-        JsonObject chargeJson = jsonElement.getAsJsonObject();
-        if (null != chargeJson.getAsJsonObject("credential")) {
-            JsonObject credentialJson = chargeJson.getAsJsonObject("credential");
+        JsonObject paymentJson = jsonElement.getAsJsonObject();
+        if (null != paymentJson.getAsJsonObject("credential")) {
+            JsonObject credentialJson = paymentJson.getAsJsonObject("credential");
             JsonObject channelCredential;
             if (credentialJson.getAsJsonObject("wx") != null) {
                 JsonObject wx = credentialJson.getAsJsonObject("wx");
@@ -55,7 +55,7 @@ public class ChargeDeserializer implements JsonDeserializer<Payment> {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
                 registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
                 .create();
-        JsonElement appElement = chargeJson.get("app");
+        JsonElement appElement = paymentJson.get("app");
         Payment payment = gson.fromJson(jsonElement, Payment.class);
 
         if (null != appElement && appElement.isJsonObject()) {

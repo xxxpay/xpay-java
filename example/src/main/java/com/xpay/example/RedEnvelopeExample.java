@@ -110,10 +110,10 @@ public class RedEnvelopeExample {
      */
     public void list() {
         RedEnvelopeCollection redEnvelopeCollection = null;
-        Map<String, Object> chargeParams = new HashMap<String, Object>();
-        chargeParams.put("limit", 3);
+        Map<String, Object> paymentParams = new HashMap<String, Object>();
+        paymentParams.put("limit", 3);
         try {
-            redEnvelopeCollection = RedEnvelope.list(chargeParams);
+            redEnvelopeCollection = RedEnvelope.list(paymentParams);
             System.out.println(redEnvelopeCollection);
         } catch (XPayException e) {
             e.printStackTrace();
