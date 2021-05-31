@@ -29,7 +29,7 @@ public class Payment extends APIResource {
     Long timeExpire;
     Long timeSettle;
     String transactionNo;
-    ChargeRefundCollection refunds;
+    PaymentRefundCollection refunds;
     Integer amountRefunded;
     String failureCode;
     String failureMsg;
@@ -158,7 +158,7 @@ public class Payment extends APIResource {
         this.object = object;
     }
 
-    public ChargeRefundCollection getRefunds() {
+    public PaymentRefundCollection getRefunds() {
         return refunds;
     }
 
@@ -336,7 +336,7 @@ public class Payment extends APIResource {
      * 查询 payment 列表
      *
      * @param params
-     * @return ChargeCollection
+     * @return PaymentCollection
      * @throws XPayException
      */
     public static PaymentCollection list(Map<String, Object> params)
@@ -349,7 +349,7 @@ public class Payment extends APIResource {
      *
      * @param params
      * @param options the specific options
-     * @return ChargeCollection
+     * @return PaymentCollection
      * @throws XPayException
      */
     public static PaymentCollection list(Map<String, Object> params, RequestOptions options)

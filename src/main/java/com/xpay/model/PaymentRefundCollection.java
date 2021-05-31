@@ -7,19 +7,19 @@ import com.xpay.net.RequestOptions;
 
 import java.util.Map;
 
-public class ChargeRefundCollection extends XPayCollectionAPIResource<Refund> {
+public class PaymentRefundCollection extends XPayCollectionAPIResource<Refund> {
 
-    public ChargeRefundCollection list(Map<String, Object> params)
+    public PaymentRefundCollection list(Map<String, Object> params)
             throws XPayException {
 
         return list(params, null);
     }
 
-    public ChargeRefundCollection list(Map<String, Object> params, RequestOptions options)
+    public PaymentRefundCollection list(Map<String, Object> params, RequestOptions options)
             throws XPayException {
 
         String url = String.format("%s%s", XPay.getApiBase(), this.getURL());
-        return APIResource.request(APIResource.RequestMethod.GET, url, params, ChargeRefundCollection.class, options);
+        return APIResource.request(APIResource.RequestMethod.GET, url, params, PaymentRefundCollection.class, options);
     }
 
     public Refund retrieve(String id)

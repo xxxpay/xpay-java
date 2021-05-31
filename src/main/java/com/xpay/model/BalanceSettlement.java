@@ -73,11 +73,11 @@ public class BalanceSettlement extends AppBasedResource {
         this.created = created;
     }
 
-    public String getCharge() {
+    public String getPayment() {
         return payment;
     }
 
-    public void setCharge(String payment) {
+    public void setPayment(String payment) {
         this.payment = payment;
     }
 

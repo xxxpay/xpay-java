@@ -10,14 +10,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.xpay.model.App;
 import com.xpay.model.Payment;
-import com.xpay.model.ChargeRefundCollection;
+import com.xpay.model.PaymentRefundCollection;
 
 import java.lang.reflect.Type;
 
 /**
  * Created by afon on 14/11/25.
  */
-public class ChargeDeserializer implements JsonDeserializer<Payment> {
+public class PaymentDeserializer implements JsonDeserializer<Payment> {
 
     @Override
     public Payment deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
@@ -53,7 +53,7 @@ public class ChargeDeserializer implements JsonDeserializer<Payment> {
         }
 
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
-                registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+                registerTypeAdapter(PaymentRefundCollection.class, new PaymentRefundCollectionDeserializer())
                 .create();
         JsonElement appElement = paymentJson.get("app");
         Payment payment = gson.fromJson(jsonElement, Payment.class);

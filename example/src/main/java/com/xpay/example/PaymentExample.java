@@ -9,7 +9,7 @@ package com.xpay.example;
 
 import com.xpay.exception.XPayException;
 import com.xpay.model.Payment;
-import com.xpay.model.ChargeCollection;
+import com.xpay.model.PaymentCollection;
 
 import java.util.*;
 
@@ -132,8 +132,8 @@ public class PaymentExample {
      * 该接口同样可以使用 expand 参数。
      * @return paymentCollection
      */
-    public ChargeCollection list() {
-        ChargeCollection paymentCollection = null;
+    public PaymentCollection list() {
+        PaymentCollection paymentCollection = null;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("limit", 3);
         Map<String, String> app = new HashMap<String, String>();

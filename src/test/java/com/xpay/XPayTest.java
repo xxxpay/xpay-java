@@ -167,7 +167,7 @@ public class XPayTest {
         params.put("channel", "alipay");
         params.put("description", "Batch transfer description.");
 
-        List<Map<String, Object>> recipients = new ArrayList<>();
+        List<Map<String, Object>> recipients = new ArrayList<Map<String, Object>>();
         params.put("recipients", recipients);
 
         Map<String, Object> recipient1 = new HashMap<String, Object>();

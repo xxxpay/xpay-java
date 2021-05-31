@@ -81,19 +81,19 @@ public class Summary extends XPayObject {
         this.summaryTo = summaryTo;
     }
 
-    public Long getChargesAmount() {
+    public Long getPaymentsAmount() {
         return paymentsAmount;
     }
 
-    public void setChargesAmount(Long paymentsAmount) {
+    public void setPaymentsAmount(Long paymentsAmount) {
         this.paymentsAmount = paymentsAmount;
     }
 
-    public Long getChargesCount() {
+    public Long getPaymentsCount() {
         return paymentsCount;
     }
 
-    public void setChargesCount(Long paymentsCount) {
+    public void setPaymentsCount(Long paymentsCount) {
         this.paymentsCount = paymentsCount;
     }
 }

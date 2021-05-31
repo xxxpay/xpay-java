@@ -8,7 +8,7 @@
 package com.xpay.example;
 
 import com.xpay.exception.*;
-import com.xpay.model.ChargeRefundCollection;
+import com.xpay.model.PaymentRefundCollection;
 import com.xpay.model.Refund;
 
 import java.util.HashMap;
@@ -109,7 +109,7 @@ public class RefundExample {
         Map<String, Object> refundParams = new HashMap<String, Object>();
         refundParams.put("limit", 3);
         try {
-            ChargeRefundCollection refunds = Refund.list(this.payment, refundParams);
+            PaymentRefundCollection refunds = Refund.list(this.payment, refundParams);
             System.out.println(refunds);
         } catch (XPayException e) {
             e.printStackTrace();

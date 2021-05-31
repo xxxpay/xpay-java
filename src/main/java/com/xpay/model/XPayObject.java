@@ -16,9 +16,9 @@ public abstract class XPayObject implements XPayObjectInterface {
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .disableHtmlEscaping()
             .registerTypeAdapter(BatchTransferRecipient.class, new BatchTransferRecipientSerializer())
-            .registerTypeAdapter(BatchRefundCharges.class, new BatchRefundChargesSerializer())
+            .registerTypeAdapter(BatchRefundPayments.class, new BatchRefundPaymentsSerializer())
             .registerTypeAdapter(Double.class, new DoubleTypeSerializer())
-            .registerTypeAdapter(ChargeEssentials.class, new ChargeEssentialsSerializer())
+            .registerTypeAdapter(PaymentEssentials.class, new PaymentEssentialsSerializer())
             .registerTypeAdapter(CouponTemplateExpiration.class, new CouponTemplateExpirationSerializer())
             .registerTypeAdapter(SettleAccountRecipient.class, new SettleAccountRecipientSerializer())
             .create();

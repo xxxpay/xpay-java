@@ -35,7 +35,7 @@ public class Order extends APIResource {
     PaymentCollection payments;
     String description;
     Map<String, Object> metadata;
-    ChargeEssentials paymentEssentials;
+    PaymentEssentials paymentEssentials;
     Long availableBalance;
     String receiptApp;
     String serviceApp;
@@ -222,7 +222,7 @@ public class Order extends APIResource {
         return payments;
     }
 
-    public void setCharges(PaymentCollection payments) {
+    public void setPayments(PaymentCollection payments) {
         this.payments = payments;
     }
 
@@ -242,11 +242,11 @@ public class Order extends APIResource {
         this.metadata = metadata;
     }
 
-    public ChargeEssentials getPaymentEssentials() {
+    public PaymentEssentials getPaymentEssentials() {
         return paymentEssentials;
     }
 
-    public void setPaymentEssentials(ChargeEssentials paymentEssentials) {
+    public void setPaymentEssentials(PaymentEssentials paymentEssentials) {
         this.paymentEssentials = paymentEssentials;
     }
 
@@ -533,7 +533,7 @@ public class Order extends APIResource {
      *
      * @param id
      * @param params
-     * @return ChargeCollection
+     * @return PaymentCollection
      * @throws XPayException
      */
     public static PaymentCollection paymentList(String id, Map<String, Object> params) throws XPayException {
@@ -546,7 +546,7 @@ public class Order extends APIResource {
      * @param id
      * @param params
      * @param options the specific options
-     * @return ChargeCollection
+     * @return PaymentCollection
      * @throws XPayException
      */
     public static PaymentCollection paymentList(String id, Map<String, Object> params, RequestOptions options) throws XPayException {
@@ -562,8 +562,8 @@ public class Order extends APIResource {
      * @return Payment
      * @throws XPayException
      */
-    public static Payment retrieveCharge(String orderId, String paymentId) throws XPayException {
-        return retrieveCharge(orderId, paymentId, null);
+    public static Payment retrievePayment(String orderId, String paymentId) throws XPayException {
+        return retrievePayment(orderId, paymentId, null);
     }
 
     /**
@@ -579,7 +579,7 @@ public class Order extends APIResource {
      * @return Payment
      * @throws XPayException
      */
-    public static Payment retrieveCharge(String orderId, String paymentId, RequestOptions options) throws XPayException {
+    public static Payment retrievePayment(String orderId, String paymentId, RequestOptions options) throws XPayException {
         return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/payments/%s", instanceURL(Order.class, orderId), paymentId),
                 null, Payment.class, options);
     }

@@ -43,10 +43,10 @@ public abstract class APIResource extends XPayObject {
      */
     public static final Gson GSON = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-            .registerTypeAdapter(Payment.class, new ChargeDeserializer())
+            .registerTypeAdapter(Payment.class, new PaymentDeserializer())
             .registerTypeAdapter(RedEnvelope.class, new RedEnvelopeDeserializer())
             .registerTypeAdapter(Transfer.class, new TransferDeserializer())
-            .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+            .registerTypeAdapter(PaymentRefundCollection.class, new PaymentRefundCollectionDeserializer())
             .registerTypeAdapter(EventData.class, new EventDataDeserializer())
             .registerTypeAdapter(XPayRawJsonObject.class, new XPayRawJsonObjectDeserializer())
             .registerTypeAdapter(SubApp.class, new SubAppDeserializer())

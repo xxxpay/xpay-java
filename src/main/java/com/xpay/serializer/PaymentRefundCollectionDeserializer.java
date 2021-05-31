@@ -8,13 +8,13 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import com.xpay.model.ChargeRefundCollection;
+import com.xpay.model.PaymentRefundCollection;
 
 import java.lang.reflect.Type;
 
-public class ChargeRefundCollectionDeserializer implements JsonDeserializer<ChargeRefundCollection> {
+public class PaymentRefundCollectionDeserializer implements JsonDeserializer<PaymentRefundCollection> {
 
-    public ChargeRefundCollection deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+    public PaymentRefundCollection deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)

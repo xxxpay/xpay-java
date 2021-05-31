@@ -1,17 +1,17 @@
 package com.xpay.serializer;
 
 import com.google.gson.*;
-import com.xpay.model.ChargeEssentials;
+import com.xpay.model.PaymentEssentials;
 
 import java.lang.reflect.Type;
 
 /**
  * Created by afon on 16/11/06.
  */
-public class ChargeEssentialsSerializer implements JsonSerializer<ChargeEssentials> {
+public class PaymentEssentialsSerializer implements JsonSerializer<PaymentEssentials> {
 
     @Override
-    public JsonElement serialize(ChargeEssentials paymentEssentials, Type type, JsonSerializationContext jsonSerializationContext) {
+    public JsonElement serialize(PaymentEssentials paymentEssentials, Type type, JsonSerializationContext jsonSerializationContext) {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(Double.class, new DoubleTypeSerializer())

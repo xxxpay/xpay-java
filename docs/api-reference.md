@@ -54,7 +54,7 @@ list(Map<String, Object> params)
 方法名：list  
 类型：静态方法  
 参数：Map  
-返回：ChargeCollection  
+返回：PaymentCollection  
 示例：
 ``` java
 Map<String, Object> paymentParams = new HashMap<String, Object>();
@@ -62,7 +62,7 @@ app.put("id", APP_ID);
 paymentParams.put("app", app);
 paymentParams.put("limit", 3);
 Map<String, String> app = new HashMap<String, String>();
-ChargeCollection payments = Payment.list(paymentParams);
+PaymentCollection payments = Payment.list(paymentParams);
 System.out.println(payments);
 ```
 

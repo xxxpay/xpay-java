@@ -57,10 +57,10 @@ public class OrderTest extends XPayTestBase {
      */
     @Test
     public void testPayOrder() {
-        Map<String, Object> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("channel", "wx_lite");
         params.put("payment_amount", 100);
-        Map<String, Object> extra = new HashMap<>(); // extra: 根据各个渠道传入相应的参数
+        Map<String, Object> extra = new HashMap<String, Object>(); // extra: 根据各个渠道传入相应的参数
         extra.put("open_id", "123456");
         params.put("extra", extra);
         Order order; // 创建支付 Order 对象 方法
@@ -117,11 +117,11 @@ public class OrderTest extends XPayTestBase {
      * 查询订单中 Payment 对象
      */
     @Test
-    public void testOrderChargeRetrieve() throws XPayException {
+    public void testOrderPaymentRetrieve() throws XPayException {
         // 查询订单中 Payment 对象
         // 参数一: order id
         // 参数二: payment id
-        Payment obj = Order.retrieveCharge("2001708220000221911", "ch_88mbTKu9mbn9mfT4KSCiHiX5");
+        Payment obj = Order.retrievePayment("2001708220000221911", "ch_88mbTKu9mbn9mfT4KSCiHiX5");
         assertEquals("object should be payment", "payment", obj.getObject());
     }
 
@@ -129,8 +129,8 @@ public class OrderTest extends XPayTestBase {
      * 查询订单中 Payment 列表
      */
     @Test
-    public void testOrderChargeList() throws XPayException {
-        Map<String, Object> params = new HashMap<>();
+    public void testOrderPaymentList() throws XPayException {
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("page", 1);
         params.put("per_page", 10);
 

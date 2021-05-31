@@ -9,7 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.xpay.model.App;
-import com.xpay.model.ChargeRefundCollection;
+import com.xpay.model.PaymentRefundCollection;
 import com.xpay.model.Transfer;
 
 import java.lang.reflect.Type;
@@ -23,7 +23,7 @@ public class TransferDeserializer implements JsonDeserializer<Transfer> {
 
         JsonObject transFerJson = json.getAsJsonObject();
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+                .registerTypeAdapter(PaymentRefundCollection.class, new PaymentRefundCollectionDeserializer())
                 .create();
         JsonElement appElement = transFerJson.get("app");
         Transfer transfer = gson.fromJson(json, Transfer.class);

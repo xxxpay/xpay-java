@@ -63,11 +63,11 @@ public class Refund extends APIResource {
         this.created = created;
     }
 
-    public String getCharge() {
+    public String getPayment() {
         return payment;
     }
 
-    public void setCharge(String payment) {
+    public void setPayment(String payment) {
         this.payment = payment;
     }
 
@@ -135,11 +135,11 @@ public class Refund extends APIResource {
         this.metadata = metadata;
     }
 
-    public String getChargeOrderNo() {
+    public String getPaymentOrderNo() {
         return paymentOrderNo;
     }
 
-    public void setChargeOrderNo(String paymentOrderNo) {
+    public void setPaymentOrderNo(String paymentOrderNo) {
         this.paymentOrderNo = paymentOrderNo;
     }
 
@@ -227,10 +227,10 @@ public class Refund extends APIResource {
      *
      * @param paymentId
      * @param params
-     * @return ChargeRefundCollection
+     * @return PaymentRefundCollection
      * @throws XPayException
      */
-    public static ChargeRefundCollection list(String paymentId, Map<String, Object>params)
+    public static PaymentRefundCollection list(String paymentId, Map<String, Object>params)
             throws XPayException {
         return list(paymentId, params, null);
     }
@@ -241,12 +241,12 @@ public class Refund extends APIResource {
      * @param paymentId
      * @param params
      * @param options the specific options
-     * @return ChargeRefundCollection
+     * @return PaymentRefundCollection
      * @throws XPayException
      */
-    public static ChargeRefundCollection list(String paymentId, Map<String, Object>params, RequestOptions options)
+    public static PaymentRefundCollection list(String paymentId, Map<String, Object>params, RequestOptions options)
             throws XPayException {
         return request(RequestMethod.GET, String.format("%s/refunds", instanceURL(Payment.class, paymentId)),
-                params, ChargeRefundCollection.class, options);
+                params, PaymentRefundCollection.class, options);
     }
 }

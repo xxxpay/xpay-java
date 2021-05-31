@@ -3,18 +3,18 @@ package com.xpay.model;
 /**
  * Created by Afon on 17/01/12.
  */
-public class BatchRefundCharges extends XPayObject {
+public class BatchRefundPayments extends XPayObject {
     String payment;
     Integer amount;
     String description;
     String status;
     String fundingSource;
 
-    public String getCharge() {
+    public String getPayment() {
         return payment;
     }
 
-    public void setCharge(String account) {
+    public void setPayment(String account) {
         this.payment = payment;
     }
 

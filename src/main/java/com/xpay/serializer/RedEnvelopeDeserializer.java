@@ -9,7 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.xpay.model.App;
-import com.xpay.model.ChargeRefundCollection;
+import com.xpay.model.PaymentRefundCollection;
 import com.xpay.model.RedEnvelope;
 
 import java.lang.reflect.Type;
@@ -22,7 +22,7 @@ public class RedEnvelopeDeserializer implements JsonDeserializer<RedEnvelope> {
     public RedEnvelope deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject transFerJson = json.getAsJsonObject();
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
-                registerTypeAdapter(ChargeRefundCollection.class, new ChargeRefundCollectionDeserializer())
+                registerTypeAdapter(PaymentRefundCollection.class, new PaymentRefundCollectionDeserializer())
                 .create();
         JsonElement appElement = transFerJson.get("app");
         RedEnvelope redEnvelope = gson.fromJson(json, RedEnvelope.class);

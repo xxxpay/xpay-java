@@ -16,8 +16,8 @@ public class BatchRefund extends APIResource {
     String description;
     Boolean livemode;
     Map<String, Object> metadata;
-    List<BatchRefundCharges> payments;
-    ChargeRefundCollection refunds;
+    List<BatchRefundPayments> payments;
+    PaymentRefundCollection refunds;
     String refundUrl;
     String status;
     Long timeSucceeded;
@@ -86,19 +86,19 @@ public class BatchRefund extends APIResource {
         this.metadata = metadata;
     }
 
-    public List<BatchRefundCharges> getCharges() {
+    public List<BatchRefundPayments> getPayments() {
         return payments;
     }
 
-    public void setCharges(List<BatchRefundCharges> payments) {
+    public void setPayments(List<BatchRefundPayments> payments) {
         this.payments = payments;
     }
 
-    public ChargeRefundCollection getRefunds() {
+    public PaymentRefundCollection getRefunds() {
         return refunds;
     }
 
-    public void setRefunds(ChargeRefundCollection refunds) {
+    public void setRefunds(PaymentRefundCollection refunds) {
         this.refunds = refunds;
     }
 
