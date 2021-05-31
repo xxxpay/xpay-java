@@ -536,8 +536,8 @@ public class Order extends APIResource {
      * @return ChargeCollection
      * @throws XPayException
      */
-    public static PaymentCollection chargeList(String id, Map<String, Object> params) throws XPayException {
-        return chargeList(id, params, null);
+    public static PaymentCollection paymentList(String id, Map<String, Object> params) throws XPayException {
+        return paymentList(id, params, null);
     }
 
     /**
@@ -549,8 +549,8 @@ public class Order extends APIResource {
      * @return ChargeCollection
      * @throws XPayException
      */
-    public static PaymentCollection chargeList(String id, Map<String, Object> params, RequestOptions options) throws XPayException {
-        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/charges", instanceURL(Order.class, id)),
+    public static PaymentCollection paymentList(String id, Map<String, Object> params, RequestOptions options) throws XPayException {
+        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/payments", instanceURL(Order.class, id)),
                 params, PaymentCollection.class, options);
     }
 
@@ -558,19 +558,19 @@ public class Order extends APIResource {
      * 查询订单 Payment
      *
      * @param orderId
-     * @param chargeId
+     * @param paymentId
      * @return Payment
      * @throws XPayException
      */
-    public static Payment retrieveCharge(String orderId, String chargeId) throws XPayException {
-        return retrieveCharge(orderId, chargeId, null);
+    public static Payment retrieveCharge(String orderId, String paymentId) throws XPayException {
+        return retrieveCharge(orderId, paymentId, null);
     }
 
     /**
      * 查询订单 Payment
      *
      * @param orderId
-     * @param chargeId
+     * @param paymentId
 <<<<<<< HEAD
      * @param options  the specific options
 =======
@@ -579,8 +579,8 @@ public class Order extends APIResource {
      * @return Payment
      * @throws XPayException
      */
-    public static Payment retrieveCharge(String orderId, String chargeId, RequestOptions options) throws XPayException {
-        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/charges/%s", instanceURL(Order.class, orderId), chargeId),
+    public static Payment retrieveCharge(String orderId, String paymentId, RequestOptions options) throws XPayException {
+        return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/payments/%s", instanceURL(Order.class, orderId), paymentId),
                 null, Payment.class, options);
     }
 }

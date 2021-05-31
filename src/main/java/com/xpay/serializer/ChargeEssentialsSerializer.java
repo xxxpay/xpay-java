@@ -11,16 +11,16 @@ import java.lang.reflect.Type;
 public class ChargeEssentialsSerializer implements JsonSerializer<ChargeEssentials> {
 
     @Override
-    public JsonElement serialize(ChargeEssentials chargeEssentials, Type type, JsonSerializationContext jsonSerializationContext) {
+    public JsonElement serialize(ChargeEssentials paymentEssentials, Type type, JsonSerializationContext jsonSerializationContext) {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(Double.class, new DoubleTypeSerializer())
                 .disableHtmlEscaping();
 
-        if (chargeEssentials.getChannel() != null) {
+        if (paymentEssentials.getChannel() != null) {
             gsonBuilder.serializeNulls();
         }
 
-        return gsonBuilder.create().toJsonTree(chargeEssentials, type);
+        return gsonBuilder.create().toJsonTree(paymentEssentials, type);
     }
 }

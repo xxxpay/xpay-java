@@ -14,8 +14,8 @@ public class Summary extends XPayObject {
     private Long created;
     private Long summaryFrom;
     private Long summaryTo;
-    private Long chargesAmount;
-    private Long chargesCount;
+    private Long paymentsAmount;
+    private Long paymentsCount;
 
     public String getAcctId() {
         return acctId;
@@ -82,18 +82,18 @@ public class Summary extends XPayObject {
     }
 
     public Long getChargesAmount() {
-        return chargesAmount;
+        return paymentsAmount;
     }
 
-    public void setChargesAmount(Long chargesAmount) {
-        this.chargesAmount = chargesAmount;
+    public void setChargesAmount(Long paymentsAmount) {
+        this.paymentsAmount = paymentsAmount;
     }
 
     public Long getChargesCount() {
-        return chargesCount;
+        return paymentsCount;
     }
 
-    public void setChargesCount(Long chargesCount) {
-        this.chargesCount = chargesCount;
+    public void setChargesCount(Long paymentsCount) {
+        this.paymentsCount = paymentsCount;
     }
 }

@@ -19,8 +19,8 @@ create(Map<String, Object> params)
 返回：Payment  
 示例：
 ``` java
-Map<String, Object> chargeMap = new HashMap<String, Object>();
-chargeMap.put("amount", 100); // 金额，单位为分，例 100 表示 1.00 元，233 表示 2.33 元
+Map<String, Object> paymentMap = new HashMap<String, Object>();
+paymentMap.put("amount", 100); // 金额，单位为分，例 100 表示 1.00 元，233 表示 2.33 元
 chargeMap.put("currency", "cny");
 chargeMap.put("subject", "Your Subject");
 chargeMap.put("body", "Your Body");

@@ -35,9 +35,9 @@ XPay.appId = "<APP_ID>";
 
 #### 创建 Payment
 ```java
-Map<String, Object> chargeMap = new HashMap<String, Object>();
+Map<String, Object> paymentMap = new HashMap<String, Object>();
 // 某些渠道需要添加extra参数，具体参数详见接口文档
-chargeMap.put("amount", 100);
+paymentMap.put("amount", 100);
 chargeMap.put("currency", "cny");
 chargeMap.put("subject", "Your Subject");
 chargeMap.put("body", "Your Body");

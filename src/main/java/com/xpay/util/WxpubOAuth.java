@@ -183,11 +183,11 @@ public class WxpubOAuth {
         if (null == payment || null == jsapiTicket || payment.isEmpty() || jsapiTicket.isEmpty())
             return null;
         JsonParser jp = new JsonParser();
-        JsonObject chargeJson = jp.parse(payment).getAsJsonObject();
-        if (!chargeJson.has("credential")) {
+        JsonObject paymentJson = jp.parse(payment).getAsJsonObject();
+        if (!paymentJson.has("credential")) {
             return null;
         }
-        JsonObject credential = chargeJson.get("credential").getAsJsonObject();
+        JsonObject credential = paymentJson.get("credential").getAsJsonObject();
         if (!credential.has("wx_pub")) {
             return null;
         }

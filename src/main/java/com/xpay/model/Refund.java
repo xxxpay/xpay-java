@@ -20,7 +20,7 @@ public class Refund extends APIResource {
     String failureMsg;
     Map<String, Object> metadata;
     String payment;
-    String chargeOrderNo;
+    String paymentOrderNo;
     String transactionNo;
     String fundingSource;
     Map<String, Object> extra;
@@ -136,11 +136,11 @@ public class Refund extends APIResource {
     }
 
     public String getChargeOrderNo() {
-        return chargeOrderNo;
+        return paymentOrderNo;
     }
 
-    public void setChargeOrderNo(String chargeOrderNo) {
-        this.chargeOrderNo = chargeOrderNo;
+    public void setChargeOrderNo(String paymentOrderNo) {
+        this.paymentOrderNo = paymentOrderNo;
     }
 
     public String getTransactionNo() {
@@ -170,48 +170,48 @@ public class Refund extends APIResource {
     /**
      * 创建 refund
      *
-     * @param chargeId
+     * @param paymentId
      * @param params
      * @return Refund
      * @throws XPayException
      */
-    public static Refund create(String chargeId, Map<String, Object> params)
+    public static Refund create(String paymentId, Map<String, Object> params)
             throws XPayException {
-        return create(chargeId, params, null);
+        return create(paymentId, params, null);
     }
 
     /**
      * 创建 refund
      *
-     * @param chargeId
+     * @param paymentId
      * @param params
      * @param options the specific options
      * @return Refund
      * @throws XPayException
      */
-    public static Refund create(String chargeId, Map<String, Object> params, RequestOptions options)
+    public static Refund create(String paymentId, Map<String, Object> params, RequestOptions options)
             throws XPayException {
-        return APIResource.request(APIResource.RequestMethod.POST, String.format("%s/refunds", instanceURL(Payment.class, chargeId)),
+        return APIResource.request(APIResource.RequestMethod.POST, String.format("%s/refunds", instanceURL(Payment.class, paymentId)),
                 params, Refund.class, options);
     }
 
     /**
      * 查询 refund
      *
-     * @param chargeId
+     * @param paymentId
      * @param id
      * @return Refund
      * @throws XPayException
      */
-    public static Refund retrieve(String chargeId, String id)
+    public static Refund retrieve(String paymentId, String id)
             throws XPayException {
-        return retrieve(chargeId, id, null);
+        return retrieve(paymentId, id, null);
     }
 
     /**
      * 查询 refund
      *
-     * @param chargeId
+     * @param paymentId
      * @param id
      * @param options the specific options
      * @return Refund
