@@ -339,7 +339,7 @@ public class Payment extends APIResource {
      * @return ChargeCollection
      * @throws XPayException
      */
-    public static ChargeCollection list(Map<String, Object> params)
+    public static PaymentCollection list(Map<String, Object> params)
             throws XPayException {
         return list(params, null);
     }
@@ -352,12 +352,12 @@ public class Payment extends APIResource {
      * @return ChargeCollection
      * @throws XPayException
      */
-    public static ChargeCollection list(Map<String, Object> params, RequestOptions options)
+    public static PaymentCollection list(Map<String, Object> params, RequestOptions options)
             throws XPayException {
         if (params != null
                 && ((params.containsKey("app") && (params.get("app") instanceof Map) && ((Map) params.get("app")).containsKey("id"))
                 || (params.containsKey("app[id]") && (params.get("app[id]") instanceof String)))) {
-            return request(RequestMethod.GET, classURL(Payment.class), params, ChargeCollection.class, options);
+            return request(RequestMethod.GET, classURL(Payment.class), params, PaymentCollection.class, options);
         }
         throw new InvalidRequestException(
                 "Please pass app[id] as parameter.",

@@ -37,32 +37,32 @@ public class XPayTest {
     }
 
     @Test
-    public void testCreateCharge() {
+    public void testCreatePayment() {
         String appId = XPayTestData.getAppID();
 
         Payment payment = null;
-        Map<String, Object> chargeMap = new HashMap<String, Object>();
-        chargeMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
-        chargeMap.put("currency", "cny");
-        chargeMap.put("subject", "Your Subject");
-        chargeMap.put("body", "Your Body");
+        Map<String, Object> pamentMap = new HashMap<String, Object>();
+        pamentMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
+        pamentMap.put("currency", "cny");
+        pamentMap.put("subject", "Your Subject");
+        pamentMap.put("body", "Your Body");
         String orderNo = "orderno" + new Date().getTime();
-        chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
-        chargeMap.put("channel", "wx_lite");// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
-        chargeMap.put("client_ip", "192.168.1.132"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
+        pamentMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
+        pamentMap.put("channel", "wx_lite");// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
+        pamentMap.put("client_ip", "192.168.1.132"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);
-        chargeMap.put("app", app);
+        pamentMap.put("app", app);
 
         Map<String, Object> extra = new HashMap<String, Object>();
         extra.put("open_id", "123456");
-        chargeMap.put("extra", extra);
+        pamentMap.put("extra", extra);
         try {
             // 发起 payment 创建请求
-            payment = Payment.create(chargeMap);
+            payment = Payment.create(pamentMap);
             // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
-            String chargeString = payment.toString();
-            System.out.println(chargeString);
+            String pamentString = payment.toString();
+            System.out.println(pamentString);
         } catch (XPayException e) {
             e.printStackTrace();
         }
@@ -73,13 +73,13 @@ public class XPayTest {
     }
 
     @Test
-    public void testWebhooksParseCharge() {
-        String webhookData = XPayTestData.getChargeWebhooksData();
+    public void testWebhooksParsePayment() {
+        String webhookData = XPayTestData.getPaymentWebhooksData();
 
         XPayObject obj = Webhooks.getObject(webhookData);
 
         assertTrue("object should be an instance of Payment", obj instanceof Payment);
-        assertEquals("object should be charge", "charge", ((Payment) obj).getObject());
+        assertEquals("object should be pament", "pament", ((Payment) obj).getObject());
     }
 
     @Test
@@ -93,13 +93,13 @@ public class XPayTest {
     }
 
     @Test
-    public void testGetChargeList() {
+    public void testGetPaymentList() {
         try {
             Integer limit = 3;
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("app[id]", XPayTestData.getAppID());
             params.put("limit", limit);
-            ChargeCollection chs = Payment.list(params);
+            PaymentCollection chs = Payment.list(params);
 
             System.out.println(chs);
             assertEquals("object should be list", "list", chs.getObject());
@@ -200,15 +200,15 @@ public class XPayTest {
     }
 
     @Test
-    public void testReverseCharge() {
+    public void testReversePayment() {
         String appId = XPayTestData.getAppID();
 
-        String chargeId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
+        String pamentId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
 
         Payment payment = null;
         try {
             // 发起 payment 撤销请求
-            payment = Payment.reverse(chargeId);
+            payment = Payment.reverse(pamentId);
             System.out.println(payment);
 
             assertEquals("payment object should be payment", "payment", payment.getObject());
@@ -220,18 +220,18 @@ public class XPayTest {
 
     @Test
     public void testRetrieveRefund() {
-        String chargeId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
+        String pamentId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
         String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
 
         Refund refund = null;
         try {
-            refund = Refund.retrieve(chargeId, refundId);
+            refund = Refund.retrieve(pamentId, refundId);
             System.out.println(refund);
         } catch (XPayException e) {
             e.printStackTrace();
         }
 
-        assertEquals("refund object should be charge", "refund", refund.getObject());
+        assertEquals("refund object should be pament", "refund", refund.getObject());
         assertNotNull("refund extra not null", refund.getExtra());
     }
 

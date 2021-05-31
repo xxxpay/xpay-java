@@ -17,6 +17,12 @@
       <version>1.10</version>
       <scope>runtime</scope>
     </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>RELEASE</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
   <name>xpay-java</name>
   <url>https://github.com/xxxpay/xpay-java</url>

@@ -32,7 +32,7 @@ public class Order extends APIResource {
     Long timePaid;
     Long timeExpire;
     String coupon;
-    ChargeCollection payments;
+    PaymentCollection payments;
     String description;
     Map<String, Object> metadata;
     ChargeEssentials paymentEssentials;
@@ -218,11 +218,11 @@ public class Order extends APIResource {
         this.coupon = coupon;
     }
 
-    public ChargeCollection getPayments() {
+    public PaymentCollection getPayments() {
         return payments;
     }
 
-    public void setCharges(ChargeCollection payments) {
+    public void setCharges(PaymentCollection payments) {
         this.payments = payments;
     }
 
@@ -536,7 +536,7 @@ public class Order extends APIResource {
      * @return ChargeCollection
      * @throws XPayException
      */
-    public static ChargeCollection chargeList(String id, Map<String, Object> params) throws XPayException {
+    public static PaymentCollection chargeList(String id, Map<String, Object> params) throws XPayException {
         return chargeList(id, params, null);
     }
 
@@ -549,9 +549,9 @@ public class Order extends APIResource {
      * @return ChargeCollection
      * @throws XPayException
      */
-    public static ChargeCollection chargeList(String id, Map<String, Object> params, RequestOptions options) throws XPayException {
+    public static PaymentCollection chargeList(String id, Map<String, Object> params, RequestOptions options) throws XPayException {
         return APIResource.request(APIResource.RequestMethod.GET, String.format("%s/charges", instanceURL(Order.class, id)),
-                params, ChargeCollection.class, options);
+                params, PaymentCollection.class, options);
     }
 
     /**

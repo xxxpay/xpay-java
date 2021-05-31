@@ -22,7 +22,7 @@ public class XPayTestData {
 
     }
 
-    public static String getChargeWebhooksData() {
+    public static String getPaymentWebhooksData() {
         return "{\"id\":\"evt_c4qfbcefvIhsxKuES4CpqdUN\",\"created\":1482204769,\"livemode\":false,\"type\":\"charge.succeeded\",\"data\":{\"object\":{\"amount\":100,\"amount_refunded\":0,\"amount_settle\":100,\"app\":\"app_1Gqj58ynP0mHeX1q\",\"body\":\"Your body\",\"channel\":\"alipay\",\"client_ip\":\"210.28.41.51\",\"created\":1482204769,\"credential\":{},\"currency\":\"cny\",\"description\":\"Description.\",\"extra\":{},\"failure_code\":null,\"failure_msg\":null,\"id\":\"ch_1SiPqPDCuvj5S4OaTSX54KC0\",\"livemode\":false,\"metadata\":{},\"object\":\"charge\",\"order_no\":\"orderno1482210036043\",\"paid\":true,\"refunded\":false,\"refunds\":{\"data\":[],\"has_more\":false,\"object\":\"list\",\"url\":\"/v1/charges/ch_1SiPqPDCuvj5S4OaTSX54KC0/refunds\"},\"subject\":\"Your Subject\",\"time_expire\":1482207768,\"time_paid\":1482204769,\"time_settle\":null,\"transaction_no\":\"2016122028818332\"}},\"object\":\"event\",\"request\":\"iar_cfgO0GxCSs9CH0K4r1t5Whjk\",\"pending_webhooks\":0}";
     }
 

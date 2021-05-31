@@ -1,7 +1,7 @@
 ## XPay Java SDK 文档
 #### 概述
 本文档简要概述 XPay Java SDK 部分常用类的使用方法，详细使用方法开发者可阅读源码以及示例程序
-- Charge
+- Payment
 - Refund
 - RedEnvelope
 - Webhooks
@@ -16,7 +16,7 @@ create(Map<String, Object> params)
 方法名：create  
 类型：静态方法  
 参数：Map  
-返回：Charge  
+返回：Payment  
 示例：
 ``` java
 Map<String, Object> chargeMap = new HashMap<String, Object>();
@@ -30,24 +30,24 @@ chargeMap.put("client_ip", "127.0.0.1"); // 客户端的 IP 地址
 Map<String, String> app = new HashMap<String, String>();
 app.put("id", APP_ID);
 chargeMap.put("app", app);
-Charge payment = Charge.create(chargeMap);
+Payment payment = Payment.create(chargeMap);
 System.out.println(payment);
 ```
 
-##### 查询 Charge
+##### 查询 Payment
 ``` java
 retrieve(String id)
 ```
 方法名：retrieve  
 类型：静态方法  
-参数：String 类型的 Charge ID  
-返回：Charge  
+参数：String 类型的 Payment ID  
+返回：Payment  
 示例：  
 ``` java
-Charge payment = Charge.retrieve(CHARGE_ID);
+Payment payment = Payment.retrieve(CHARGE_ID);
 ```
 
-##### 查询 Charge 列表
+##### 查询 Payment 列表
 ``` java
 list(Map<String, Object> params)
 ```
@@ -62,21 +62,21 @@ app.put("id", APP_ID);
 chargeParams.put("app", app);
 chargeParams.put("limit", 3);
 Map<String, String> app = new HashMap<String, String>();
-ChargeCollection charges = Charge.list(chargeParams);
+ChargeCollection charges = Payment.list(chargeParams);
 System.out.println(charges);
 ```
 
-##### 撤销 Charge
+##### 撤销 Payment
 ``` java
 reverse(String id)
 ```
 方法名：reverse
 类型：静态方法
-参数：String 类型的 Charge ID
-返回：Charge
+参数：String 类型的 Payment ID
+返回：Payment
 示例：
 ``` java
-Charge payment = Charge.reverse(CHARGE_ID);
+Payment payment = Payment.reverse(CHARGE_ID);
 ```
 
 #### Refund
@@ -92,7 +92,7 @@ create(Map<String, Object> params)
 ``` java
 Map<String, Object> params = new HashMap<String, Object>();
 params.put("description", "Refund Description");
-Charge ch = Charge.retrieve(CHARGE_ID);
+Payment ch = Payment.retrieve(CHARGE_ID);
 Refund re = ch.getRefunds().create(params);
 ```
 
@@ -106,7 +106,7 @@ retrieve(String id)
 返回：Refund  
 示例：
 ``` java
-Charge ch = Charge.retrieve(CHARGE_ID);
+Payment ch = Payment.retrieve(CHARGE_ID);
 Refund re = ch.getRefunds().retrieve(REFUND_ID);
 ```
 
@@ -120,7 +120,7 @@ list(Map<String, Object> params)
 返回：RefundCollection  
 示例：
 ``` java
-Charge ch = Charge.retrieve(CHARGE_ID);
+Payment ch = Payment.retrieve(CHARGE_ID);
 Map<String, Object> refundParams = new HashMap<String, Object>();
 refundParams.put("limit", 3);
 Refund re = ch.getRefunds().list(refundParams);
@@ -197,9 +197,9 @@ getObject(String eventStr)
 示例：
 ``` java
 Object obj = Webhooks.getObject(eventString);
-if (obj instanceof Charge) {
-    System.out.println("webhooks 发送了 Charge");
-    Charge payment = (Charge) obj;
+if (obj instanceof Payment) {
+    System.out.println("webhooks 发送了 Payment");
+    Payment payment = (Payment) obj;
     System.out.println("付款状态：" + payment.getPaid() + " 订单号：" + payment.getOrderNo());
 } else if (obj instanceof Refund) {
     System.out.println("webhooks 发送了 Refund");

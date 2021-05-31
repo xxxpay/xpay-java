@@ -1,7 +1,7 @@
 # XPay Java SDK 使用文档
 
 #### apiKey 和 appId
-SDK 需要 XPay 提供的 apiKey 和 AppID 作为凭证获取移动端支付所需的 Charge 对象。  
+SDK 需要 XPay 提供的 apiKey 和 AppID 作为凭证获取移动端支付所需的 Payment 对象。  
 其中，apiKey 可以在 XPay 管理平台的【企业设置】->【开发设置】中得到。  
 AppID 可以在 XPay 管理平台应用卡片下方得到。
 
@@ -13,7 +13,7 @@ AppID 可以在 XPay 管理平台应用卡片下方得到。
 ``` java
 XPay.apiKey = "YOUR-KEY";
 ```
-在创建 Charge 前，请设置 apiKey。
+在创建 Payment 前，请设置 apiKey。
 
 #### 设置请求签名密钥
 密钥需要你自己生成，公钥请填写到 [XPay Dashboard](https://dashboard.xpay.com)。  
@@ -33,7 +33,7 @@ XPay.privateKey = "<PRIVATE-KEY-CONTENT>";
 XPay.appId = "<APP_ID>";
 ```
 
-#### 创建 Charge
+#### 创建 Payment
 ```java
 Map<String, Object> chargeMap = new HashMap<String, Object>();
 // 某些渠道需要添加extra参数，具体参数详见接口文档
@@ -49,7 +49,7 @@ app.put("id", "YOUR_APP_ID");
 chargeMap.put("app", app);
 try {
     //发起交易请求
-    Charge payment = Charge.create(chargeMap);
+    Payment payment = Payment.create(chargeMap);
     System.out.println(payment.toString());
 } catch (XPayException e) {
     e.printStackTrace();
@@ -58,17 +58,17 @@ try {
 
 ##### 备注
 
-    获得 Charge 对象，必须的参数有 amount、currency、subject、body、order_no、channel、client_ip、app 这 8 个参数。
+    获得 Payment 对象，必须的参数有 amount、currency、subject、body、order_no、channel、client_ip、app 这 8 个参数。
     其中 amount、order_no、channel 三个参数由客户端的 post 请求中获得。
     client_ip 从客户端的 request 请求中解析。
     currency 为交易的货币代码，目前仅支持人民币 cny。
     app 参数为一个包含 appId 的 map 对象。
     subject 和 body 参数用来在用户付款、以及在第三方支付软件的账单显示。
 
-#### 返回 Charge
-请用 JSON 格式把 Charge 对象返回给客户端。
+#### 返回 Payment
+请用 JSON 格式把 Payment 对象返回给客户端。
 
-##### servlet 返回 Charge 时注意配置
+##### servlet 返回 Payment 时注意配置
 ```java
 response.setContentType("application/json;charset=UTF-8");
 ```
