@@ -10,7 +10,7 @@ public abstract class UserBasedResource extends AppBasedResource {
      * @return singleClassURL
      */
     protected static String singleClassURL(Class<?> clazz, String userId) {
-        return String.format("%s/v1/apps/%s/users/%s/%s", XPay.getApiBase(), APIResource.URIAppIdHolder, userId, className(clazz));
+        return String.format("%s/v2/apps/%s/users/%s/%s", XPay.getApiBase(), APIResource.URIAppIdHolder, userId, className(clazz));
     }
 
     /**

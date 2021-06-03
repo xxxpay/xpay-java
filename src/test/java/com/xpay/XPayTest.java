@@ -48,7 +48,7 @@ public class XPayTest {
         pamentMap.put("body", "Your Body");
         String orderNo = "orderno" + new Date().getTime();
         pamentMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
-        pamentMap.put("channel", "wx_lite");// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
+        pamentMap.put("channel", "wx_wap");// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
         pamentMap.put("client_ip", "192.168.1.132"); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", appId);

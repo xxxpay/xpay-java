@@ -8,7 +8,7 @@ public abstract class AppBasedResource extends APIResource {
      * @return singleClassURL
      */
     protected static String singleClassURL(Class<?> clazz) {
-        return String.format("%s/v1/apps/%s/%s", XPay.getApiBase(), APIResource.URIAppIdHolder, className(clazz));
+        return String.format("%s/v2/apps/%s/%s", XPay.getApiBase(), APIResource.URIAppIdHolder, className(clazz));
     }
 
     /**

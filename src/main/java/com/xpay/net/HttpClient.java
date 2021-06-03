@@ -86,7 +86,7 @@ public abstract class HttpClient {
      * @return a string containing the value of the {@code User-Agent} header
      */
     protected static String buildUserAgentString() {
-        return String.format("XPay/v1 JavaBindings/%s", XPay.VERSION);
+        return String.format("XPay/v2 JavaBindings/%s", XPay.VERSION);
     }
 
     /**

@@ -131,7 +131,7 @@ public class BatchRefund extends APIResource {
      * @return String
      */
     protected static String classURL(Class<?> clazz) {
-        return apiBasePrefixedURL("/v1/batch_refunds");
+        return apiBasePrefixedURL("/v2/batch_refunds");
     }
 
     /**

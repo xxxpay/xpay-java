@@ -176,7 +176,7 @@ public class BatchTransfer extends APIResource {
      * @return String
      */
     protected static String classURL(Class<?> clazz) {
-        return apiBasePrefixedURL("/v1/batch_transfers");
+        return apiBasePrefixedURL("/v2/batch_transfers");
     }
 
     /**

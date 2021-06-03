@@ -7,7 +7,8 @@ info:
     name: Apache-2.0
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
 host: openapi.tanyibot.com
-basePath: /apiOpen/v1
+#basePath: /apiOpen/v2
+basePath: /v2
 tags:
   - name: isv
     description: isv

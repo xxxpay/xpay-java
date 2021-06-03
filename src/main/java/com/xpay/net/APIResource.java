@@ -143,7 +143,7 @@ public abstract class APIResource extends XPayObject {
             className = className(clazz);
         }
 
-        return String.format("%s/v1/%s", XPay.getApiBase(), className);
+        return String.format("%s/v2/%s", XPay.getApiBase(), className);
     }
 
     /**

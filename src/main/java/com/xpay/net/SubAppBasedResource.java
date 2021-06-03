@@ -10,7 +10,7 @@ public abstract class SubAppBasedResource extends AppBasedResource {
      * @return singleClassURL
      */
     protected static String singleClassURL(Class<?> clazz, String subAppId) {
-        return String.format("%s/v1/apps/%s/sub_apps/%s/%s", XPay.getApiBase(), APIResource.URIAppIdHolder, subAppId, className(clazz));
+        return String.format("%s/v2/apps/%s/sub_apps/%s/%s", XPay.getApiBase(), APIResource.URIAppIdHolder, subAppId, className(clazz));
     }
 
     /**
