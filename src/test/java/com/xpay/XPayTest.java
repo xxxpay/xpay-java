@@ -55,7 +55,7 @@ public class XPayTest {
         pamentMap.put("app", app);
 
         Map<String, Object> extra = new HashMap<String, Object>();
-        extra.put("open_id", "123456");
+        extra.put("result_url", "https://example.com/success");
         pamentMap.put("extra", extra);
         try {
             // 发起 payment 创建请求
