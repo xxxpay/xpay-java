@@ -55,7 +55,7 @@ public class XPayTest {
         pamentMap.put("app", app);
 
         Map<String, Object> extra = new HashMap<String, Object>();
-        extra.put("result_url", "https://example.com/success");
+        extra.put("result_url", "https://lucfish.com/success");
         pamentMap.put("extra", extra);
         try {
             // 发起 payment 创建请求
@@ -237,7 +237,7 @@ public class XPayTest {
 
     @Test
     public void testRetrievePayment() {
-        String paymentId = "52ef517d056d40d591aca2653bafba9e";
+        String paymentId = "53292254138368";
 
         Payment payment = null;
         try {
