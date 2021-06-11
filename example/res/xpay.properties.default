@@ -1,5 +1,0 @@
-# XPay 管理平台对应的 API Key，api_key 获取方式：登录 [Dashboard](https://dashboard.xpay.com)->点击管理平台右上角公司名称->开发信息-> Secret Key
-api_key = #您申请到的api_key
-# XPay 管理平台对应的应用 ID，app_id 获取方式：登录 [Dashboard](https://dashboard.xpay.com)->点击你创建的应用->应用首页->应用 ID(App ID)
-app_id = #您申请到的api_id
-private_key_path = res/your_rsa_private_key_pkcs8.pem

@@ -53,10 +53,10 @@ public class PaymentExample {
      */
     public Payment createPayment() {
         Payment payment = null;
-        String channel = "wx";
+        String channel = "wx_wap";
 
         Map<String, Object> paymentMap = new HashMap<String, Object>();
-        paymentMap.put("amount", 100);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
+        paymentMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         paymentMap.put("currency", "cny");
         paymentMap.put("subject", "Your Subject");
         paymentMap.put("body", "Your Body");
@@ -266,10 +266,10 @@ public class PaymentExample {
     private Map<String, Object> alipayWapExtra() {
         Map<String, Object> extra = new HashMap<>();
 
-        // 必须，支付成功的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
-        extra.put("success_url", "https://example.com/success");
-        // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
-        extra.put("cancel_url", "https://example.com/cancel");
+        // 必须，支付成功的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://lucfish.com/result/user/12345/order_no/6789`。
+        extra.put("success_url", "https://lucfish.com/success");
+        // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://lucfish.com/result/user/12345/order_no/6789`。
+        extra.put("cancel_url", "https://lucfish.com/cancel");
 
         // 可选，2016 年 6 月 16 日之前登录 XPay 管理平台填写支付宝手机网站的渠道参数的旧接口商户，需要更新接口时设置此参数值为true，6月16号后接入的新接口商户不需要设置该参数。
         // extra.put("new_version", true);
@@ -282,8 +282,8 @@ public class PaymentExample {
 
     private Map<String, Object> alipayPcDirectExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付成功的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
-        extra.put("success_url", "https://example.com/success");
+        // 必须，支付成功的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://lucfish.com/result/user/12345/order_no/6789`。
+        extra.put("success_url", "https://lucfish.com/success");
 
         // 可选，是否开启防钓鱼网站的验证参数（如果已申请开通防钓鱼时间戳验证，则此字段必填）。
         // extra.put("enable_anti_phishing_key", false);
@@ -356,7 +356,7 @@ public class PaymentExample {
     private Map<String, Object> wxWapExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 可选，支付完成的回调地址。
-        extra.put("result_url", "https://example.com/success");
+        extra.put("result_url", "https://lucfish.com/success");
 
         // 可选，商品标记，代金券或立减优惠功能的参数。
         // extra.put("goods_tag", "YOUR_GOODS_TAG");
@@ -372,8 +372,8 @@ public class PaymentExample {
 
     private Map<String, Object> bfbWapExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
-        extra.put("result_url", "https://example.com/success");
+        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://lucfish.com/result/user/12345/order_no/6789`。
+        extra.put("result_url", "https://lucfish.com/success");
 
         // 必须，是否需要登录百度钱包来进行支付。
         extra.put("bfb_login", true);
@@ -389,16 +389,16 @@ public class PaymentExample {
 
     private Map<String, Object> upacpWapExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
-        extra.put("result_url", "https://example.com/success");
+        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://lucfish.com/result/user/12345/order_no/6789`。
+        extra.put("result_url", "https://lucfish.com/success");
 
         return extra;
     }
 
     private Map<String, Object> upacpPcExtra() {
         Map<String, Object> extra = new HashMap<>();
-        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://example.com/result/user/12345/order_no/6789`。
-        extra.put("result_url", "https://example.com/success");
+        // 必须，支付完成的回调地址，在本地测试不要写 localhost。URL 后面带参数的情况，可能会被渠道拒绝，建议把参数放到“路径”里，比如：`https://lucfish.com/result/user/12345/order_no/6789`。
+        extra.put("result_url", "https://lucfish.com/success");
 
         return extra;
     }
@@ -406,10 +406,10 @@ public class PaymentExample {
     private Map<String, Object> jdpayWapExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，支付完成的回调地址。
-        extra.put("success_url", "https://example.com/success");
+        extra.put("success_url", "https://lucfish.com/success");
 
         // 必须，支付失败页面跳转路径。
-        extra.put("fail_url", "https://example.com/fail");
+        extra.put("fail_url", "https://lucfish.com/fail");
 
         // 可选，用户交易令牌，用于识别用户信息，支付成功后会调用 success_url 返回给商户。商户可以记录这个 token 值，当用户再次支付的时候传入该  token ，用户无需再次输入银行卡信息，直接输入短信验证码进行支付。32 位字符串。
         // extra.put("token", "TOKEN");
@@ -450,7 +450,7 @@ public class PaymentExample {
         extra.put("user_ua", "USER_UA");
 
         // 必须，前台通知地址。
-        extra.put("result_url", "https://example.com/result");
+        extra.put("result_url", "https://lucfish.com/result");
 
         return extra;
     }
@@ -472,7 +472,7 @@ public class PaymentExample {
     private Map<String, Object> cmbWalletExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，交易完成跳转的地址。
-        extra.put("result_url", "https://example.com/result");
+        extra.put("result_url", "https://lucfish.com/result");
 
         /**
          * 对于 p_no, seq , m_uid , mobile 这几个参数：
@@ -541,7 +541,7 @@ public class PaymentExample {
         extra.put("pay_channel", "wx");
 
         // 必须，前台通知地址，支付成功或失败后，跳转到的 URL。
-        extra.put("result_url", "https://www.example.com/payment-result");
+        extra.put("result_url", "https://www.lucfish.com/payment-result");
 
         // 可选，商品列表，上送格式参照下面示例。
         List<Object> goodsList = goodsListForIsv();
@@ -656,7 +656,7 @@ public class PaymentExample {
         goods.put("price", 528800); // 商品价格，单位为分。
         goods.put("goods_category", "smartphone"); // 商品类目，可选。
         goods.put("body", "苹果手机 iPhone 6s 16G"); // 商品描述信息，可选。
-        goods.put("show_url", "https://www.example.com"); // 商品的展示网址，可选。
+        goods.put("show_url", "https://www.lucfish.com"); // 商品的展示网址，可选。
         goodsList.add(goods);
 
         return goodsList;
@@ -671,7 +671,7 @@ public class PaymentExample {
         goods.put("price", "528800"); // 商品价格，单位为分。
         goods.put("goods_category", "123456"); // 商品类目，可选。
         goods.put("body", "苹果手机"); // 商品描述信息，可选。
-        goods.put("show_url", "https://www.example.com"); // 商品的展示网址，可选。
+        goods.put("show_url", "https://www.lucfish.com"); // 商品的展示网址，可选。
         goodsList.add(goods);
 
         return goodsList;
