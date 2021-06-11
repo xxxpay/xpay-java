@@ -36,6 +36,7 @@ public class XPayTest {
         assertEquals("XPay.VERSION should match", "2.4.0", XPay.VERSION);
     }
 
+    // 创建支付
     @Test
     public void testCreatePayment() {
         String appId = XPayTestData.getAppID();
@@ -72,26 +73,43 @@ public class XPayTest {
         assertEquals("payment order_no", orderNo, payment.getOrderNo());
     }
 
+    // 撤销支付
     @Test
-    public void testWebhooksParsePayment() {
-        String webhookData = XPayTestData.getPaymentWebhooksData();
+    public void testReversePayment() {
+        String appId = XPayTestData.getAppID();
 
-        XPayObject obj = Webhooks.getObject(webhookData);
+        String pamentId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
 
-        assertTrue("object should be an instance of Payment", obj instanceof Payment);
-        assertEquals("object should be pament", "pament", ((Payment) obj).getObject());
+        Payment payment = null;
+        try {
+            // 发起 payment 撤销请求
+            payment = Payment.reverse(pamentId);
+            System.out.println(payment);
+
+            assertEquals("payment object should be payment", "payment", payment.getObject());
+            assertNotNull("payment reversed not null", payment.getReversed());
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
     }
 
+    // 获取支付详情
     @Test
-    public void testWebhooksParseBatchTransfer() {
-        String webhookData = XPayTestData.getBatchTransferWebhooksData();
+    public void testRetrievePayment() {
+        String paymentId = "53292254138368";
 
-        XPayObject obj = Webhooks.getObject(webhookData);
+        Payment payment = null;
+        try {
+            payment = Payment.retrieve(paymentId);
+            System.out.println(payment);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
 
-        assertTrue("object should be an instance of BatchTransfer", obj instanceof BatchTransfer);
-        assertEquals("object should be batch_transfer", "batch_transfer", ((BatchTransfer) obj).getObject());
+
     }
 
+    // 获取支付列表
     @Test
     public void testGetPaymentList() {
         try {
@@ -109,6 +127,46 @@ public class XPayTest {
         }
     }
 
+    // 创建退款
+    @Test
+    public void testCreateRefund() {
+        String pamentId = "53292254138368";
+        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
+
+        Refund refund = null;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("description", "苹果被咬了一口。");
+
+        try {
+            refund = Refund.create(pamentId, params);
+            System.out.println(refund);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("refund object should be pament", "refund", refund.getObject());
+        assertNotNull("refund extra not null", refund.getExtra());
+    }
+
+    // 获取退款详情
+    @Test
+    public void testRetrieveRefund() {
+        String pamentId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
+        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
+
+        Refund refund = null;
+        try {
+            refund = Refund.retrieve(pamentId, refundId);
+            System.out.println(refund);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("refund object should be pament", "refund", refund.getObject());
+        assertNotNull("refund extra not null", refund.getExtra());
+    }
+
+    // 批量获取退款详情
     @Test
     public void testGetBatchRefundList() {
         try {
@@ -124,17 +182,18 @@ public class XPayTest {
         }
     }
 
+    // 创建转账
     @Test
     public void testCreateTransfer() {
         try {
             String orderNo = "2017" + new Date().getTime();
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("amount", 100);
+            params.put("amount", 1);
             params.put("currency", "cny");
             params.put("type", "b2c");
             params.put("order_no", orderNo);
             params.put("channel", "wx_wap");
-            params.put("recipient", "123456");
+            params.put("recipient", "open_id");
 
 
             params.put("description", "Your description.");
@@ -154,6 +213,39 @@ public class XPayTest {
         }
     }
 
+    // 获取转账详情
+    @Test
+    public void testRetrieveTransfer() {
+        String paymentId = "0a6cf2488a094c2e8fc5aced13facdfc";
+
+        Transfer transfer = null;
+        Map<String, Object> param = new HashMap<String, Object>();
+        try {
+            transfer = Transfer.retrieve(paymentId, param);
+            System.out.println(transfer);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    // 批量获取转账
+    public void list() {
+        String appId = XPayTestData.getAppID();
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("limit", 3);
+        param.put("app[id]", appId);
+
+        try {
+            TransferCollection transferCollection = Transfer.list(param);
+            System.out.println(transferCollection);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 批量创建 转账
     @Test
     public void testCreateBatchTransfer() throws XPayException {
 
@@ -200,88 +292,23 @@ public class XPayTest {
     }
 
     @Test
-    public void testReversePayment() {
-        String appId = XPayTestData.getAppID();
+    public void testWebhooksParsePayment() {
+        String webhookData = XPayTestData.getPaymentWebhooksData();
 
-        String pamentId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
+        XPayObject obj = Webhooks.getObject(webhookData);
 
-        Payment payment = null;
-        try {
-            // 发起 payment 撤销请求
-            payment = Payment.reverse(pamentId);
-            System.out.println(payment);
-
-            assertEquals("payment object should be payment", "payment", payment.getObject());
-            assertNotNull("payment reversed not null", payment.getReversed());
-        } catch (XPayException e) {
-            e.printStackTrace();
-        }
+        assertTrue("object should be an instance of Payment", obj instanceof Payment);
+        assertEquals("object should be pament", "pament", ((Payment) obj).getObject());
     }
 
     @Test
-    public void testRetrieveRefund() {
-        String pamentId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
-        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
+    public void testWebhooksParseBatchTransfer() {
+        String webhookData = XPayTestData.getBatchTransferWebhooksData();
 
-        Refund refund = null;
-        try {
-            refund = Refund.retrieve(pamentId, refundId);
-            System.out.println(refund);
-        } catch (XPayException e) {
-            e.printStackTrace();
-        }
+        XPayObject obj = Webhooks.getObject(webhookData);
 
-        assertEquals("refund object should be pament", "refund", refund.getObject());
-        assertNotNull("refund extra not null", refund.getExtra());
+        assertTrue("object should be an instance of BatchTransfer", obj instanceof BatchTransfer);
+        assertEquals("object should be batch_transfer", "batch_transfer", ((BatchTransfer) obj).getObject());
     }
 
-    @Test
-    public void testCreateRefund() {
-        String pamentId = "53292254138368";
-        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
-
-        Refund refund = null;
-        Map<String, Object> params = (HashMap<String, Object>) new HashMap<String, Object>();
-        params.put("pamentId", pamentId);
-        try {
-            refund = Refund.create(pamentId, params);
-            System.out.println(refund);
-        } catch (XPayException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals("refund object should be pament", "refund", refund.getObject());
-        assertNotNull("refund extra not null", refund.getExtra());
-    }
-
-    @Test
-    public void testRetrievePayment() {
-        String paymentId = "53292254138368";
-
-        Payment payment = null;
-        try {
-            payment = Payment.retrieve(paymentId);
-            System.out.println(payment);
-        } catch (XPayException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
-    @Test
-    public void testRetrieveTransfer() {
-        String paymentId = "0a6cf2488a094c2e8fc5aced13facdfc";
-
-        Transfer transfer = null;
-        try {
-            transfer = Transfer.retrieve(paymentId);
-            System.out.println(transfer);
-        } catch (XPayException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }

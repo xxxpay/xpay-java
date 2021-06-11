@@ -38,10 +38,10 @@ public class RefundExample {
         String paymentId = "ch_5CWrz5rnz9GS84arXHLiPOqL";
 
         RefundExample refundExample = new RefundExample(paymentId);
-//        System.out.println("------- 创建 refund -------");
-//        Refund refund = refundExample.refund(1);
-//        System.out.println("------- 查询 refund -------");
-//        refundExample.retrieve(refund.getId());
+        System.out.println("------- 创建 refund -------");
+        Refund refund = refundExample.refund(1);
+        System.out.println("------- 查询 refund -------");
+        refundExample.retrieve(refund.getId());
         System.out.println("------- 查询 refund 列表 -------");
         refundExample.all();
     }
