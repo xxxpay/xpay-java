@@ -64,7 +64,7 @@ public class TransferExample {
      */
     public Transfer create() {
         Transfer transfer = null;
-        String channel = "alipay";
+        String channel = "wx_wap";
 
         String orderNo = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         Map<String, Object> transferMap = new HashMap<String, Object>();

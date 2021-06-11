@@ -133,7 +133,7 @@ public class XPayTest {
             params.put("currency", "cny");
             params.put("type", "b2c");
             params.put("order_no", orderNo);
-            params.put("channel", "wx");
+            params.put("channel", "wx_wap");
             params.put("recipient", "123456");
 
 
@@ -226,6 +226,25 @@ public class XPayTest {
         Refund refund = null;
         try {
             refund = Refund.retrieve(pamentId, refundId);
+            System.out.println(refund);
+        } catch (XPayException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals("refund object should be pament", "refund", refund.getObject());
+        assertNotNull("refund extra not null", refund.getExtra());
+    }
+
+    @Test
+    public void testCreateRefund() {
+        String pamentId = "53292254138368";
+        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
+
+        Refund refund = null;
+        Map<String, Object> params = (HashMap<String, Object>) new HashMap<String, Object>();
+        params.put("pamentId", pamentId);
+        try {
+            refund = Refund.create(pamentId, params);
             System.out.println(refund);
         } catch (XPayException e) {
             e.printStackTrace();

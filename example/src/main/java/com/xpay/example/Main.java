@@ -52,7 +52,7 @@ public class Main {
         RefundExample.runDemos();
 
         // RedEnvelope 示例
-        RedEnvelopeExample.runDemos(XPay.appId);
+//        RedEnvelopeExample.runDemos(XPay.appId);
 
         // Transfer 示例
         TransferExample.runDemos(XPay.appId);

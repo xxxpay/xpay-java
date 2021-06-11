@@ -37,10 +37,10 @@ public class CustomsExample {
         CustomsExample example = new CustomsExample(appId);
         System.out.println("------- 报关 customs 仅支持 live 模式 -------");
 
-//        System.out.println("------- 创建 customs -------");
-//        Customs obj = example.createCustoms();
-//        System.out.println("------- 查询 customs -------");
-//        example.retrieve(obj.getId());
+        System.out.println("------- 创建 customs -------");
+        Customs obj = example.createCustoms();
+        System.out.println("------- 查询 customs -------");
+        example.retrieve(obj.getId());
     }
 
     /**
@@ -53,11 +53,11 @@ public class CustomsExample {
     public Customs createCustoms() {
         Customs obj = null;
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("channel", "alipay");
+        params.put("channel", "wx_wap");
         String orderNo = new Date().getTime() + Main.randomString(7);
         params.put("trade_no", orderNo); // 8-20 位，要求数字或字母，不允许其他字符
         params.put("customs_code", "SHANGHAI"); // https://www.xpay.com/api#海关编号说明
-        params.put("amount", 10000); // 报关金额, 人民币单位：分（如金额为 100 元，此处请填 10000）
+        params.put("amount", 1); // 报关金额, 人民币单位：分（如金额为 100 元，此处请填 10000）
         params.put("payment", "<CH_ID>");
         params.put("app", appId);
         Map<String, Object> extra = new HashMap<String, Object>();
