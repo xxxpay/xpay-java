@@ -27,7 +27,7 @@ public class OrderTest extends XPayTestBase {
         params.put("merchant_order_no", "2017" + System.currentTimeMillis()); // 商户订单号, 必传
         params.put("subject", "ORDER_SUBJECT"); // 商品的标题, 必传
         params.put("body", "ORDER_BODY"); // 商品的描述信息, 必传
-        params.put("amount", 100); // 订单总金额，单位：分, 必传
+        params.put("amount", 1); // 订单总金额，单位：分, 必传
         params.put("currency", "cny"); // 仅支持人民币 cny, 必传
         params.put("uid","123");
         params.put("client_ip", "192.168.1.125"); // 客户端的 IP 地址 (IPv4 格式，要求商户上传真实的，渠道可能会判断), 必传
@@ -108,6 +108,7 @@ public class OrderTest extends XPayTestBase {
         params.put("refunded", false);
 
         OrderCollection objs = Order.list(params); //查询 order 列表方法
+        System.out.println(objs);
 
         assertEquals("object should be list", "list", objs.getObject());
         assertEquals("data count should be same with limit", ((Integer) params.get("per_page")).intValue(), objs.getData().size());

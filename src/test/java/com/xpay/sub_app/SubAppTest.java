@@ -30,6 +30,7 @@ public class SubAppTest extends XPayTestBase {
         // 创建子商户 app 方法
         // 参数: params
         SubApp obj = SubApp.create(params);
+        System.out.println(obj);
 
         assertEquals("object should be sub_app", "sub_app", obj.getObject());
         assertEquals("user", userId, obj.getUser());

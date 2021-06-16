@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -43,7 +44,7 @@ public class XPayTest {
 
         Payment payment = null;
         Map<String, Object> pamentMap = new HashMap<String, Object>();
-        pamentMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
+        pamentMap.put("amount", 3);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         pamentMap.put("currency", "cny");
         pamentMap.put("subject", "Your Subject");
         pamentMap.put("body", "Your Body");
@@ -78,7 +79,7 @@ public class XPayTest {
     public void testReversePayment() {
         String appId = XPayTestData.getAppID();
 
-        String pamentId = "ch_Py5SC89OyT00W5K4uHPmLCSC";
+        String pamentId = "53399243231232";
 
         Payment payment = null;
         try {
@@ -96,7 +97,7 @@ public class XPayTest {
     // 获取支付详情
     @Test
     public void testRetrievePayment() {
-        String paymentId = "53292254138368";
+        String paymentId = "53421342232576";
 
         Payment payment = null;
         try {
@@ -113,13 +114,28 @@ public class XPayTest {
     @Test
     public void testGetPaymentList() {
         try {
-            Integer limit = 3;
+            Integer limit = 1;
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("app[id]", XPayTestData.getAppID());
             params.put("limit", limit);
+            params.put("created[gt]", 1623827848000L);
+//            params.put("created[gte]", 1623812390000L);
+//            params.put("created[lt]", 1623812390000L);
+//            params.put("created[lte]", 1623812390000L);
+//            params.put("starting_after", "53421342232576");
+//            params.put("ending_before", "53417290010624");
+//            params.put("channel", "wx_wap");
+//            params.put("paid", false);
+//            params.put("refunded", false);
+//            params.put("reversed", true);
             PaymentCollection chs = Payment.list(params);
 
-            System.out.println(chs);
+//            System.out.println(chs);
+            List<String> ids = chs.getData().stream().map(payment -> {return payment.getId();}).collect(Collectors.toList());
+            System.out.println(ids);
+            List<Long> times = chs.getData().stream().map(payment -> payment.getCreated()).collect(Collectors.toList());
+            System.out.println(times);
+
             assertEquals("object should be list", "list", chs.getObject());
             assertEquals("data count should be same with limit", limit.intValue(), chs.getData().size());
         } catch (XPayException e) {
@@ -130,12 +146,13 @@ public class XPayTest {
     // 创建退款
     @Test
     public void testCreateRefund() {
-        String pamentId = "53292254138368";
+        String pamentId = "53421342232576";
         String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
 
         Refund refund = null;
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("description", "苹果被咬了一口。");
+        params.put("description", "3");
+        params.put("amount", 1);
 
         try {
             refund = Refund.create(pamentId, params);
@@ -151,8 +168,8 @@ public class XPayTest {
     // 获取退款详情
     @Test
     public void testRetrieveRefund() {
-        String pamentId = "ch_Ti1eD0WP08eDPSSqnTOmLWHK";
-        String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
+        String pamentId = "53399513239552";
+        String refundId = "53404291862528";
 
         Refund refund = null;
         try {
@@ -166,15 +183,20 @@ public class XPayTest {
         assertNotNull("refund extra not null", refund.getExtra());
     }
 
-    // 批量获取退款详情
+    // 批量获取退款列表
     @Test
     public void testGetBatchRefundList() {
         try {
             Integer limit = 3;
-            Map<String, Object> params = new HashMap<String, Object>();
-            params.put("per_page", limit);
-            BatchRefundCollection objs = BatchRefund.list(params);
+            Map<String, Object> refundParams = new HashMap<String, Object>();
+            refundParams.put("limit", 4);
+//            refundParams.put("starting_after", "53421389156352");
+//            refundParams.put("ending_before", "53421398593536");
+            PaymentRefundCollection objs = Refund.list("53421342232576",refundParams);
+//            System.out.println(objs);
 
+            List<String> ids = objs.getData().stream().map(it -> it.getId()).collect(Collectors.toList());
+            System.out.println(ids);
             assertEquals("object should be list", "list", objs.getObject());
             assertEquals("data count should be same with per_page", limit.intValue(), objs.getData().size());
         } catch (XPayException e) {
