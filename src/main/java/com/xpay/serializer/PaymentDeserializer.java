@@ -1,13 +1,6 @@
 package com.xpay.serializer;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import com.xpay.model.App;
 import com.xpay.model.Payment;
 import com.xpay.model.PaymentRefundCollection;
@@ -23,7 +16,8 @@ public class PaymentDeserializer implements JsonDeserializer<Payment> {
     public Payment deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
         JsonObject paymentJson = jsonElement.getAsJsonObject();
-        if (null != paymentJson.getAsJsonObject("credential")) {
+        JsonElement element = paymentJson.get("credential");
+        if (!(element instanceof JsonNull)) {
             JsonObject credentialJson = paymentJson.getAsJsonObject("credential");
             JsonObject channelCredential;
             if (credentialJson.getAsJsonObject("wx") != null) {

@@ -114,14 +114,14 @@ public class XPayTest {
     @Test
     public void testGetPaymentList() {
         try {
-            Integer limit = 1;
+            Integer limit = 10;
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("app[id]", XPayTestData.getAppID());
             params.put("limit", limit);
-            params.put("created[gt]", 1623827848000L);
-//            params.put("created[gte]", 1623812390000L);
-//            params.put("created[lt]", 1623812390000L);
-//            params.put("created[lte]", 1623812390000L);
+            params.put("created[gt]", 1623834297000L);
+//            params.put("created[gte]", 1623850026000L);
+//            params.put("created[lt]", 1623850026000L);
+            params.put("created[lte]", 1623850026000L);
 //            params.put("starting_after", "53421342232576");
 //            params.put("ending_before", "53417290010624");
 //            params.put("channel", "wx_wap");
