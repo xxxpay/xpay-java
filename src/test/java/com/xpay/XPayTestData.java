@@ -84,7 +84,8 @@ public class XPayTestData {
             private_key_0,
             private_key_1
     };
-    public static int index = 0;
+    public static int index = 5;
+    public static int private_key_index = 1;
 
 
     public static String getApiBase() {
@@ -132,8 +133,8 @@ public class XPayTestData {
                 "zlvyIcNn/xQ8hO6L55OxUH0FqmlcwXP8bZEp9fGiML/59UOSn+vMy3O2Mc0OShrp\n" +
                 "99s+ocGf/85ybWCDY5hRloiQ" +
                 "\n-----END PRIVATE KEY-----";
-        x = private_keys[index];
-        return x;
+        x = private_keys[private_key_index];
+        return private_keys[private_key_index];
 
     }
 

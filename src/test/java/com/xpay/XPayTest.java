@@ -44,7 +44,7 @@ public class XPayTest {
 
         Payment payment = null;
         Map<String, Object> pamentMap = new HashMap<String, Object>();
-        pamentMap.put("amount", 3);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
+        pamentMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         pamentMap.put("currency", "cny");
         pamentMap.put("subject", "Your Subject");
         pamentMap.put("body", "Your Body");
@@ -97,7 +97,7 @@ public class XPayTest {
     // 获取支付详情
     @Test
     public void testRetrievePayment() {
-        String paymentId = "53421342232576";
+        String paymentId = "53443420000256";
 
         Payment payment = null;
         try {
