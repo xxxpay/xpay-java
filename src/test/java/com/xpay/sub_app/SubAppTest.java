@@ -41,7 +41,7 @@ public class SubAppTest extends XPayTestBase {
      * 查询子商户 app
      */
     @Test public void testSubAppRetrieve() throws XPayException {
-        String subAppId = "app_rbDmXLHmLqbTLKm9";
+        String subAppId = XPayTestData.getAppID();
         // 查询子商户 app
         // 参数: SubApp id
         SubApp obj = SubApp.retrieve(subAppId);

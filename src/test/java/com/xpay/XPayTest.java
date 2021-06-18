@@ -97,7 +97,7 @@ public class XPayTest {
     // 获取支付详情
     @Test
     public void testRetrievePayment() {
-        String paymentId = "53443420000256";
+        String paymentId = "53443954249728";
 
         Payment payment = null;
         try {
