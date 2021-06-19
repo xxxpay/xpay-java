@@ -39,8 +39,20 @@ public class RoyaltyTemplateTest extends XPayTestBase {
         Map<String, Object> data2 = new HashMap<>();
         data2.put("level", 1);
         data2.put("value", 12);
+        Map<String, Object> data3 = new HashMap<>();
+        data3.put("level", 1);
+        data3.put("value", 20);
+        Map<String, Object> data4 = new HashMap<>();
+        data4.put("level", 1);
+        data4.put("value", 25);
+        Map<String, Object> data5 = new HashMap<>();
+        data5.put("level", 1);
+        data5.put("value", 30);
         data.add(data1);
         data.add(data2);
+        data.add(data3);
+        data.add(data4);
+        data.add(data5);
 
         rule.put("data", data);
         params.put("rule", rule);

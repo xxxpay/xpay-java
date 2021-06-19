@@ -97,7 +97,7 @@ public class XPayTest {
     // 获取支付详情
     @Test
     public void testRetrievePayment() {
-        String paymentId = "53443954249728";
+        String paymentId = "53484743331840";
 
         Payment payment = null;
         try {
@@ -146,7 +146,7 @@ public class XPayTest {
     // 创建退款
     @Test
     public void testCreateRefund() {
-        String pamentId = "53421342232576";
+        String pamentId = "53484543578112";
         String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
 
         Refund refund = null;

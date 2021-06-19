@@ -88,7 +88,7 @@ public class OrderTest extends XPayTestBase {
      */
     @Test
     public void testOrderRetrieve() throws XPayException {
-        Order obj = Order.retrieve("53473123274752"); // 查询单个 order 方法  参数: orderId
+        Order obj = Order.retrieve("53489392455680"); // 查询单个 order 方法  参数: orderId
 
         System.out.println(obj);
         assertNotNull(obj);
