@@ -24,7 +24,7 @@ public class RechargeTest extends XPayTestBase {
         payment.put("amount", 1); // 用户实际支付金额，单位分, 必传
         payment.put("channel", "wx_wap"); // 支付使用的第三方支付渠道, 必传
         payment.put("order_no", "2017" + System.currentTimeMillis()); // 商户订单号，适配每个渠道对此参数的要求，必须在商户系统内唯一, 必传
-        payment.put("client_ip", "127.0.0.1");   // 客户端的 IP，IPv4，默认 127.0.0.1, 可选
+        payment.put("client_ip", "192.168.1.132");   // 客户端的 IP，IPv4，默认 127.0.0.1, 可选
         payment.put("subject", "Recharge subject"); // 充值标题，该参数最长为 32 个 Unicode 字符, 必传
         payment.put("body", "Recharge body"); // 充值描述信息，该参数最长为 128 个 Unicode 字符, 必传
         Map<String, Object> extra = new HashMap<String, Object>(); // extra: 根据不同渠道传入相应的参数
@@ -32,6 +32,9 @@ public class RechargeTest extends XPayTestBase {
         payment.put("extra", extra);
         params.put("payment", payment);
         Recharge obj = Recharge.create(params); // 创建 recharge 方法
+        System.out.println(obj);
+        assertEquals("succeeded", "false", obj.getSucceeded());
+        assertEquals("refunded", false, obj.getRefunded());
         assertEquals("object should be recharge", "recharge", obj.getObject());
     }
 
@@ -41,8 +44,8 @@ public class RechargeTest extends XPayTestBase {
     @Test public void testRechargeRetrieve() throws XPayException {
         // 查询单个 recharge 方法
         // 参数: rechargeId
-        Recharge obj = Recharge.retrieve("220170822678080532480001");
-
+        Recharge obj = Recharge.retrieve("53537180782592");
+        System.out.println(obj);
         assertEquals("object should be recharge", "recharge", obj.getObject());
     }
 
@@ -52,13 +55,22 @@ public class RechargeTest extends XPayTestBase {
     @Test public void testRechargeList() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("page", 1);
-        params.put("per_page", 10);
-        params.put("succeeded", true); // 是否已充值成功
-        params.put("refunded", true); // 是否存在退款 (跟是否退款成功没有关系)
+        params.put("per_page", 3);
+        params.put("user", "user_test_02"); // 充值目标用户 ID, 必传
+        params.put("from_user", "user_test_02"); //
+//        params.put("succeeded", true); // 是否已充值成功
+//        params.put("refunded", true); // 是否存在退款 (跟是否退款成功没有关系)
+        params.put("payment[channel]", "wx_wap"); // 充值使用的支付渠道。
+        params.put("payment[order_no]", "2017162426973615"); // 。
+//        params.put("created[gt]", 1624269737000L); // 。
+//        params.put("created[gte]", 1624269737000L); // 。
+//        params.put("created[lte]", 1624270002000L); // 。
+//        params.put("created[lt]", 1624270002000L); // 。
+
         // 查询 recharge 列表方法
         // 参数: params
         RechargeCollection objs = Recharge.list(params);
-
+        System.out.println(objs);
         assertEquals("object should be list", "list", objs.getObject());
     }
 
@@ -71,8 +83,8 @@ public class RechargeTest extends XPayTestBase {
         // 创建 recharge_refund 方法
         // 参数一: rechargeId
         // 参数二: params
-        Refund obj = RechargeRefund.create("220170822678080532480001", params);
-
+        Refund obj = RechargeRefund.create("53537250250752", params);
+        System.out.println(obj);
         assertEquals("object should be refund", "refund", obj.getObject());
     }
 
@@ -83,8 +95,8 @@ public class RechargeTest extends XPayTestBase {
         // 查询单个 recharge_refund 方法
         // 参数一: rechargeId
         // 参数二: refundId
-        Refund obj = RechargeRefund.retrieve("220170822360378572800001", "re_q5CmjDb1Ge9Sr580K4W10CaP");
-
+        Refund obj = RechargeRefund.retrieve("53537250250752", "53537294553090");
+        System.out.println(obj);
         assertEquals("object should be refund", "refund", obj.getObject());
     }
 
@@ -98,7 +110,8 @@ public class RechargeTest extends XPayTestBase {
         // 查询 recharge_refund 列表方法
         // 参数一: rechargeId
         // 参数二: params
-        RechargeRefundCollection objs = RechargeRefund.list("220170822360378572800001", params);
+        RechargeRefundCollection objs = RechargeRefund.list("53537250250752", params);
+        System.out.println(objs);
         assertEquals("object should be list", "list", objs.getObject());
     }
 }

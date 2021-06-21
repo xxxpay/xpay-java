@@ -54,7 +54,7 @@ public class UserTest extends XPayTestBase {
      * 查询单个用户 (User)
      */
     @Test public void testUserRetrieve() throws XPayException {
-        String userId = "123";
+        String userId = "user_test_02";
         User obj = User.retrieve(userId); //查询 User 方法
 
         System.out.println(obj);
