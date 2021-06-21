@@ -43,10 +43,13 @@ public class OrderTest extends XPayTestBase {
         Order obj = Order.create(params); // 创建 Order 对象 方法
 
         System.out.println(obj);
+        assertEquals("status", "created", obj.getStatus());
+        assertEquals("paid", false, obj.getPaid());
+        assertEquals("refunded", false, obj.getRefunded());
         assertEquals("object should be order", "order", obj.getObject());
         assertEquals("amount", ((Integer) params.get("amount")).intValue(), obj.getAmount().intValue());
         assertEquals("app", params.get("app"), obj.getApp());
-        assertEquals("user ID", params.get("uid"), obj.getUid());
+//        assertEquals("user ID", params.get("uid"), obj.getUid());
         assertEquals("merchant_order_no", params.get("merchant_order_no"), obj.getMerchantOrderNo());
         assertEquals("subject", params.get("subject"), obj.getSubject());
         assertEquals("body", params.get("body"), obj.getBody());
@@ -65,8 +68,11 @@ public class OrderTest extends XPayTestBase {
 //        params.put("extra", extra);
         Order order; // 创建支付 Order 对象 方法
         try {
-            order = Order.pay("53473123274752", params);
+            order = Order.pay("53536056184832", params);
             System.out.println(order);
+            assertEquals("status", "created", order.getStatus());
+            assertEquals("paid", false, order.getPaid());
+            assertEquals("refunded", false, order.getRefunded());
             assertEquals("object should be order", "order", order.getObject());
         } catch (XPayException e) {
             System.out.println(e.toString());
@@ -78,8 +84,11 @@ public class OrderTest extends XPayTestBase {
      */
     @Test
     public void testCancelOrder() throws XPayException {
-        Order order = Order.cancel("53472877383680"); // 取消 Order 对象方法
-
+        Order order = Order.cancel("53535941890048"); // 取消 Order 对象方法
+        System.out.println(order);
+        assertEquals("status", "canceled", order.getStatus());
+        assertEquals("paid", false, order.getPaid());
+        assertEquals("refunded", false, order.getRefunded());
         assertEquals("object should be order", "order", order.getObject());
     }
 
@@ -88,7 +97,7 @@ public class OrderTest extends XPayTestBase {
      */
     @Test
     public void testOrderRetrieve() throws XPayException {
-        Order obj = Order.retrieve("53489392455680"); // 查询单个 order 方法  参数: orderId
+        Order obj = Order.retrieve("53536056184832"); // 查询单个 order 方法  参数: orderId
 
         System.out.println(obj);
         assertNotNull(obj);
@@ -103,7 +112,7 @@ public class OrderTest extends XPayTestBase {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("page", 1);
         params.put("per_page", 3);
-        params.put("paid", false);
+        params.put("paid", true);
         params.put("app", XPayTestData.getAppID());
         params.put("refunded", false);
 
@@ -122,7 +131,7 @@ public class OrderTest extends XPayTestBase {
         // 查询订单中 Payment 对象
         // 参数一: order id
         // 参数二: payment id
-        Payment obj = Order.retrievePayment("53473032835072", "53473035980800");
+        Payment obj = Order.retrievePayment("53536056184832", "53534526836736");
         System.out.println(obj);
         assertEquals("object should be payment", "payment", obj.getObject());
     }
@@ -139,7 +148,7 @@ public class OrderTest extends XPayTestBase {
         // 查询订单中 Payment 列表
         // 参数一: orderId
         // 参数二: params
-        PaymentCollection objs = Order.paymentList("53473032835072", params);
+        PaymentCollection objs = Order.paymentList("53536056184832", params);
         System.out.println(objs);
         assertEquals("object should be list", "list", objs.getObject());
     }
@@ -152,12 +161,13 @@ public class OrderTest extends XPayTestBase {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("description", "Order refund test."); // 必传
-        params.put("refund_mode", "to_source");
+        params.put("refund_mode", "0");
 
         // 创建 order 退款方法
         // 参数一: orderId
         // 参数二: params
-        OrderRefundCollection objs = OrderRefund.create("53473032835072", params);
+        OrderRefundCollection objs = OrderRefund.create("53536056184832", params);
+        System.out.println(objs);
 
         assertEquals("object should be list", "list", objs.getObject());
     }
@@ -170,7 +180,8 @@ public class OrderTest extends XPayTestBase {
         // 查询 order 退款方法
         // 参数一: orderId
         // 参数二: refundId
-        Refund obj = OrderRefund.retrieve("2001708220000258501", "re_5GefjD14GW50qrT40Gq9KmPS");
+        Refund obj = OrderRefund.retrieve("53536056184832", "53536026562562");
+        System.out.println(obj);
         assertEquals("object should be refund", "refund", obj.getObject());
     }
 
@@ -182,7 +193,8 @@ public class OrderTest extends XPayTestBase {
 
         // 查询 order 退款列表
         // 参数: orderId
-        OrderRefundCollection objs = OrderRefund.list("2001708220000258501");
+        OrderRefundCollection objs = OrderRefund.list("53536056184832");
+        System.out.println(objs);
         assertEquals("object should be list", "list", objs.getObject());
     }
 }

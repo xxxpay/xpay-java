@@ -84,7 +84,7 @@ public class XPayTestData {
             private_key_0,
             private_key_1
     };
-    public static int index = 4;
+    public static int index = 5;
     public static int private_key_index = 1;
 
 

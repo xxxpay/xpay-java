@@ -79,7 +79,7 @@ public class XPayTest {
     public void testReversePayment() {
         String appId = XPayTestData.getAppID();
 
-        String pamentId = "53399243231232";
+        String pamentId = "53529572052992";
 
         Payment payment = null;
         try {
@@ -97,7 +97,7 @@ public class XPayTest {
     // 获取支付详情
     @Test
     public void testRetrievePayment() {
-        String paymentId = "53484743331840";
+        String paymentId = "53534397337600";
 
         Payment payment = null;
         try {
@@ -146,7 +146,7 @@ public class XPayTest {
     // 创建退款
     @Test
     public void testCreateRefund() {
-        String pamentId = "53484543578112";
+        String pamentId = "53534397337600";
         String refundId = "re_8avPmLWrPaH8TKmXDK5KubrL";
 
         Refund refund = null;
@@ -168,8 +168,8 @@ public class XPayTest {
     // 获取退款详情
     @Test
     public void testRetrieveRefund() {
-        String pamentId = "53399513239552";
-        String refundId = "53404291862528";
+        String pamentId = "53534526836736";
+        String refundId = "53534632480770";
 
         Refund refund = null;
         try {
@@ -192,7 +192,7 @@ public class XPayTest {
             refundParams.put("limit", 4);
 //            refundParams.put("starting_after", "53421389156352");
 //            refundParams.put("ending_before", "53421398593536");
-            PaymentRefundCollection objs = Refund.list("53421342232576",refundParams);
+            PaymentRefundCollection objs = Refund.list("53534397337600",refundParams);
 //            System.out.println(objs);
 
             List<String> ids = objs.getData().stream().map(it -> it.getId()).collect(Collectors.toList());
