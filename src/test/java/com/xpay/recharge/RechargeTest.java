@@ -18,10 +18,10 @@ public class RechargeTest extends XPayTestBase {
     public void testRechargeCreate() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("user", "user_test_02"); // 充值目标用户 ID, 必传
-        params.put("user_fee", 1);     // 用户充值收取的手续费，单位分，不得大于 amount，不可和 balance_bonus[amount] 同时传，默认 0。可选
+//        params.put("user_fee", 1);     // 用户充值收取的手续费，单位分，不得大于 amount，不可和 balance_bonus[amount] 同时传，默认 0。可选
         params.put("description", "Recharge description."); // 描述, 可选
         Map<String, Object> payment = new HashMap<String, Object>();
-        payment.put("amount", 1); // 用户实际支付金额，单位分, 必传
+        payment.put("amount", 10); // 用户实际支付金额，单位分, 必传
         payment.put("channel", "wx_wap"); // 支付使用的第三方支付渠道, 必传
         payment.put("order_no", "2017" + System.currentTimeMillis()); // 商户订单号，适配每个渠道对此参数的要求，必须在商户系统内唯一, 必传
         payment.put("client_ip", "192.168.1.132");   // 客户端的 IP，IPv4，默认 127.0.0.1, 可选
@@ -33,7 +33,7 @@ public class RechargeTest extends XPayTestBase {
         params.put("payment", payment);
         Recharge obj = Recharge.create(params); // 创建 recharge 方法
         System.out.println(obj);
-        assertEquals("succeeded", "false", obj.getSucceeded());
+        assertEquals("succeeded", false, obj.getSucceeded());
         assertEquals("refunded", false, obj.getRefunded());
         assertEquals("object should be recharge", "recharge", obj.getObject());
     }
@@ -44,7 +44,7 @@ public class RechargeTest extends XPayTestBase {
     @Test public void testRechargeRetrieve() throws XPayException {
         // 查询单个 recharge 方法
         // 参数: rechargeId
-        Recharge obj = Recharge.retrieve("53537180782592");
+        Recharge obj = Recharge.retrieve("53562876661760");
         System.out.println(obj);
         assertEquals("object should be recharge", "recharge", obj.getObject());
     }
@@ -61,7 +61,7 @@ public class RechargeTest extends XPayTestBase {
 //        params.put("succeeded", true); // 是否已充值成功
 //        params.put("refunded", true); // 是否存在退款 (跟是否退款成功没有关系)
         params.put("payment[channel]", "wx_wap"); // 充值使用的支付渠道。
-        params.put("payment[order_no]", "2017162426973615"); // 。
+//        params.put("payment[order_no]", "2017162426973615"); // 。
 //        params.put("created[gt]", 1624269737000L); // 。
 //        params.put("created[gte]", 1624269737000L); // 。
 //        params.put("created[lte]", 1624270002000L); // 。

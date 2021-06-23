@@ -20,8 +20,8 @@ public class BalanceTransactionTest extends XPayTestBase {
 
         // 查询单个 balance_transaction 方法
         // 参数: balance_transaction id
-        BalanceTransaction obj = BalanceTransaction.retrieve("600170822661998110720001");
-
+        BalanceTransaction obj = BalanceTransaction.retrieve("53579106521089");
+        System.out.println(obj);
         assertEquals("object should be balance_transaction", "balance_transaction", obj.getObject());
     }
 
@@ -35,6 +35,7 @@ public class BalanceTransactionTest extends XPayTestBase {
         // 查询 balance_transaction 列表方法
         // 参数: params
         BalanceTransactionCollection objs = BalanceTransaction.list(params);
+        System.out.println(objs);
 
         assertEquals("object should be list", "list", objs.getObject());
     }

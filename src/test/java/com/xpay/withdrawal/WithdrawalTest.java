@@ -18,9 +18,9 @@ public class WithdrawalTest extends XPayTestBase {
     @Test
     public void testCreateWithdrawal() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("user", "123456"); // 用户 ID, 必传
-        params.put("channel", "alipay"); // 提现使用渠道。银联：unionpay，支付宝：alipay，微信：wx_pub，通联：allinpay，京东：jdpay, 可选
-        params.put("amount", 100);  // 转账金额, 必传
+        params.put("user", "user_test_02"); // 用户 ID, 必传
+        params.put("channel", "wx_wap"); // 提现使用渠道。银联：unionpay，支付宝：alipay，微信：wx_pub，通联：allinpay，京东：jdpay, 可选
+        params.put("amount", 1);  // 转账金额, 必传
         params.put("description", "custom description");    // 描述, 可选
         params.put("order_no", "1010" + System.currentTimeMillis()); // 提现订单号, 必传
         Map<String, String> extra = new HashMap<String, String>();

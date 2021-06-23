@@ -19,9 +19,9 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountCreate() throws XPayException {
-        String userId = "123";
+        String userId = "user_test_02";
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("channel", "wx"); // [wx_pub, wx, alipay, bank_account] 其中一种
+        params.put("channel", "wx_wap"); // [wx_pub, wx, alipay, bank_account] 其中一种
         Map<String, Object> recipient = new HashMap<String, Object>(); // recipient 参数请参考各个渠道,以下是 alipay 参数
         recipient.put("account", "123456"); // 接收者银行账号/卡号
 //        recipient.put("name", "USER NAME"); // 接收者姓名
@@ -60,7 +60,7 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountList() throws XPayException {
-        String userId = "123";
+        String userId = "user_test_02";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);
