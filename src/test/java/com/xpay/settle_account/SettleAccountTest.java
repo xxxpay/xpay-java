@@ -21,18 +21,18 @@ public class SettleAccountTest extends XPayTestBase {
     public void testSettleAccountCreate() throws XPayException {
         String userId = "user_test_02";
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("channel", "wx_wap"); // [wx_pub, wx, alipay, bank_account] 其中一种
+        params.put("channel", "bank_account"); // [wx_pub, wx, alipay, bank_account] 其中一种
         Map<String, Object> recipient = new HashMap<String, Object>(); // recipient 参数请参考各个渠道,以下是 alipay 参数
         recipient.put("account", "123456"); // 接收者银行账号/卡号
-//        recipient.put("name", "USER NAME"); // 接收者姓名
-//        recipient.put("type", "b2c"); // 转账类型
-//        recipient.put("open_bank_code", "0102"); // 户银行编号
-//        recipient.put("open_bank", "工商银行");
-//        recipient.put("card_type", 0);
-//        recipient.put("sub_bank", "招商银行股份有限公司上海陆家嘴支行");
-//        recipient.put("sub_bank_code", "308290003773");
-//        recipient.put("prov", "上海市");
-//        recipient.put("city", "上海市");
+        recipient.put("name", "USER NAME"); // 接收者姓名
+        recipient.put("type", "b2c"); // 转账类型
+        recipient.put("open_bank_code", "0102"); // 户银行编号
+        recipient.put("open_bank", "工商银行");
+        recipient.put("card_type", 0);
+        recipient.put("sub_bank", "招商银行股份有限公司上海陆家嘴支行");
+        recipient.put("sub_bank_code", "308290003773");
+        recipient.put("prov", "上海市");
+        recipient.put("city", "上海市");
 
         params.put("recipient", recipient);
 
@@ -51,7 +51,7 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountRetrieve() throws XPayException {
-        SettleAccount obj = SettleAccount.retrieve("123", "a1b3b64a1035475c81414fb5af5e0ff8"); // 查询结算账户方法
+        SettleAccount obj = SettleAccount.retrieve("user_test_02", "53583777402880"); // 查询结算账户方法
         System.out.println(obj);
     }
 
@@ -63,10 +63,17 @@ public class SettleAccountTest extends XPayTestBase {
         String userId = "user_test_02";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
-        params.put("per_page", 3);
+        params.put("per_page", 30);
+
+//        params.put("created[gt]", 1624447489000L);
+//        params.put("created[gte]", 1624447489000L);
+//        params.put("created[lt]", 1624447489000L);
+//        params.put("created[lte]", 1624447554000L);
         SettleAccountCollection list = SettleAccount.list(userId, params); // 查询结算账户列表方法 userId:必传   params:可选
 
         System.out.println(list);
+        list.getData().stream().forEach(it->System.out.println(it.getCreated()));
+
         assertEquals("object should be list", "list", list.getObject());
     }
 
@@ -75,7 +82,7 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountDelete() throws XPayException {
-        String userId = "U2019053010510001";
+        String userId = "user_test_02";
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);
@@ -97,8 +104,8 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountUpdate() throws XPayException {
-        String userId = "123";
-        String id = "870513b986ab4dc28d230010171f0a94";
+        String userId = "user_test_02";
+        String id = "53583777402880";
         Map<String, Object> params = new HashMap<>();
         Map<String, Object> recipient = new HashMap<>();
         recipient.put("account", "ofSup5XZ3xg4Sd6lGEGsXayTZgEE"); // 银行卡号。
@@ -125,8 +132,8 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountUpdateMobile() throws XPayException {
-        String userId = "U2019053010510001";
-        String id = "320119071220443300000101";
+        String userId = "user_test_02";
+        String id = "53583777402880";
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", "13822334557");
         SettleAccount obj = SettleAccount.updateMobile(userId, id, params);
@@ -140,8 +147,8 @@ public class SettleAccountTest extends XPayTestBase {
      */
     @Test
     public void testSettleAccountVerify() throws XPayException {
-        String userId = "U2019053010510001";
-        String id = "320119071220443300000101";
+        String userId = "user_test_02";
+        String id = "53583777402880";
         Map<String, Object> params = new HashMap<>();
         params.put("receive_amount", 2);
         SettleAccount obj = SettleAccount.verify(userId, id, params);
