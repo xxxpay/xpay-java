@@ -1,6 +1,7 @@
 package com.xpay.withdrawal;
 
 import com.xpay.XPayTestBase;
+import com.xpay.XPayTestData;
 import com.xpay.exception.XPayException;
 import com.xpay.model.Withdrawal;
 import com.xpay.model.WithdrawalCollection;
@@ -18,7 +19,7 @@ public class WithdrawalTest extends XPayTestBase {
     @Test
     public void testCreateWithdrawal() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("user", "user_test_02"); // 用户 ID, 必传
+        params.put("user", XPayTestData.userId); // 用户 ID, 必传
         params.put("channel", "wx_wap"); // 提现使用渠道。银联：unionpay，支付宝：alipay，微信：wx_pub，通联：allinpay，京东：jdpay, 可选
         params.put("amount", 1);  // 转账金额, 必传
         params.put("description", "custom description");    // 描述, 可选

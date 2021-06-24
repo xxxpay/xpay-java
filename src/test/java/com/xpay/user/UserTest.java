@@ -22,7 +22,7 @@ public class UserTest extends XPayTestBase {
      */
     @Test public void testUserCreate() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("id", "user_test_03"); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
+        params.put("id", XPayTestData.userId); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
         params.put("address", "Shanghai, China");       // 用户地址, 可选
         params.put("avatar", "https://example.com/avatar.png"); // 头像, 可选
         params.put("email", params.get("id") + "@gmail.com");   // 邮箱地址, 可选
@@ -54,7 +54,7 @@ public class UserTest extends XPayTestBase {
      * 查询单个用户 (User)
      */
     @Test public void testUserRetrieve() throws XPayException {
-        String userId = "user_test_02";
+        String userId = XPayTestData.userId;
         User obj = User.retrieve(userId); //查询 User 方法
 
         System.out.println(obj);
@@ -76,8 +76,7 @@ public class UserTest extends XPayTestBase {
 //        params.put("created[lt]", 1624369585000L);
         params.put("disabled", false);
         params.put("identified", false);
-//        params.put("type", "customer");
-        params.put("type", 0);
+//        params.put("type", 0);
 
         UserCollection objs = User.list(params); //查询 User 列表方法
         System.out.println(objs);
@@ -88,7 +87,7 @@ public class UserTest extends XPayTestBase {
      * 更新用户信息 (User)
      */
     @Test public void testUserUpdate() throws XPayException {
-        String userId = "user_test_02";
+        String userId = XPayTestData.userId;
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("address", "China, China");
         params.put("avatar", "https://example.com/avatar.png");

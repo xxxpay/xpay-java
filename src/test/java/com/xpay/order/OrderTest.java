@@ -29,7 +29,7 @@ public class OrderTest extends XPayTestBase {
         params.put("body", "ORDER_BODY"); // 商品的描述信息, 必传
         params.put("amount", 3); // 订单总金额，单位：分, 必传
         params.put("currency", "cny"); // 仅支持人民币 cny, 必传
-        params.put("uid","user_test_02");
+        params.put("uid",XPayTestData.userId);
         params.put("client_ip", "192.168.1.125"); // 客户端的 IP 地址 (IPv4 格式，要求商户上传真实的，渠道可能会判断), 必传
         Map user1 = new HashMap<String, Object>();
         user1.put("user", "123");

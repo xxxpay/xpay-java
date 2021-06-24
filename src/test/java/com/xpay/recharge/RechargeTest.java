@@ -1,6 +1,7 @@
 package com.xpay.recharge;
 
 import com.xpay.XPayTestBase;
+import com.xpay.XPayTestData;
 import com.xpay.exception.XPayException;
 import com.xpay.model.*;
 import org.junit.Test;
@@ -17,11 +18,11 @@ public class RechargeTest extends XPayTestBase {
     @Test
     public void testRechargeCreate() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("user", "user_test_02"); // 充值目标用户 ID, 必传
+        params.put("user", XPayTestData.userId); // 充值目标用户 ID, 必传
 //        params.put("user_fee", 1);     // 用户充值收取的手续费，单位分，不得大于 amount，不可和 balance_bonus[amount] 同时传，默认 0。可选
         params.put("description", "Recharge description."); // 描述, 可选
         Map<String, Object> payment = new HashMap<String, Object>();
-        payment.put("amount", 10); // 用户实际支付金额，单位分, 必传
+        payment.put("amount", 1); // 用户实际支付金额，单位分, 必传
         payment.put("channel", "wx_wap"); // 支付使用的第三方支付渠道, 必传
         payment.put("order_no", "2017" + System.currentTimeMillis()); // 商户订单号，适配每个渠道对此参数的要求，必须在商户系统内唯一, 必传
         payment.put("client_ip", "192.168.1.132");   // 客户端的 IP，IPv4，默认 127.0.0.1, 可选
@@ -56,8 +57,8 @@ public class RechargeTest extends XPayTestBase {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("page", 1);
         params.put("per_page", 3);
-        params.put("user", "user_test_02"); // 充值目标用户 ID, 必传
-        params.put("from_user", "user_test_02"); //
+        params.put("user", XPayTestData.userId); // 充值目标用户 ID, 必传
+        params.put("from_user", XPayTestData.userId); //
 //        params.put("succeeded", true); // 是否已充值成功
 //        params.put("refunded", true); // 是否存在退款 (跟是否退款成功没有关系)
         params.put("payment[channel]", "wx_wap"); // 充值使用的支付渠道。

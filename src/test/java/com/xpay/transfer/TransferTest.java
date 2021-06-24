@@ -218,7 +218,7 @@ public class TransferTest extends XPayTestBase {
         params.put("type", "b2c");
         params.put("description", "wx_pub transfer description");
         // 接收者 id， 渠道为 balance 时，为用户在当前 app 下的用户 id。
-        params.put("recipient", "user_test_02");
+        params.put("recipient", XPayTestData.userId);
 
         Map<String, Object> app = new HashMap<>();
         app.put("id", XPayTestData.getAppID());

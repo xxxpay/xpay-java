@@ -86,6 +86,7 @@ public class XPayTestData {
     };
     public static int index = 5;
     public static int private_key_index = 1;
+    public static String userId = "user_test_02";
 
 
     public static String getApiBase() {

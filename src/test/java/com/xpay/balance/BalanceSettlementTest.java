@@ -1,6 +1,7 @@
 package com.xpay.balance;
 
 import com.xpay.XPayTestBase;
+import com.xpay.XPayTestData;
 import com.xpay.exception.XPayException;
 import com.xpay.model.BalanceSettlement;
 import com.xpay.model.BalanceSettlementCollection;
@@ -33,7 +34,7 @@ public class BalanceSettlementTest extends XPayTestBase {
         Map<String, Object> params = new HashMap<>();
         params.put("page", 1);
         params.put("per_page", 3);
-        params.put("user", "user_test_02");
+        params.put("user", XPayTestData.userId);
         // 查询 balance_settlement 列表方法
         // 参数: params
         BalanceSettlementCollection objs = BalanceSettlement.list(params);

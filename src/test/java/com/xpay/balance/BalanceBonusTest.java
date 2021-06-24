@@ -1,6 +1,7 @@
 package com.xpay.balance;
 
 import com.xpay.XPayTestBase;
+import com.xpay.XPayTestData;
 import com.xpay.exception.XPayException;
 import com.xpay.model.BalanceBonus;
 import com.xpay.model.BalanceBonusCollection;
@@ -18,7 +19,7 @@ public class BalanceBonusTest extends XPayTestBase {
     @Test
     public void testBalanceBonusCreate() throws XPayException {
         Map<String, Object> params = new HashMap<>();
-        params.put("user", "user_test_02");  // 受赠的用户 ID, 必传
+        params.put("user", XPayTestData.userId);  // 受赠的用户 ID, 必传
         params.put("amount", 10);            // 支付受赠余额，单位：分, 必传
         params.put("order_no", "2017" + System.currentTimeMillis()); // 商户订单号，必须在商户系统内唯一, 必传
         params.put("description", "Balance bonus description."); // 描述, 可选
