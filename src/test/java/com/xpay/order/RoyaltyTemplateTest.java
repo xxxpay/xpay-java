@@ -40,19 +40,23 @@ public class RoyaltyTemplateTest extends XPayTestBase {
         data2.put("level", 1);
         data2.put("value", 12);
         Map<String, Object> data3 = new HashMap<>();
-        data3.put("level", 1);
+        data3.put("level", 2);
         data3.put("value", 20);
         Map<String, Object> data4 = new HashMap<>();
-        data4.put("level", 1);
+        data4.put("level", 3);
         data4.put("value", 25);
         Map<String, Object> data5 = new HashMap<>();
-        data5.put("level", 1);
+        data5.put("level", 4);
         data5.put("value", 30);
+        Map<String, Object> data6 = new HashMap<>();
+        data6.put("level", 5);
+        data6.put("value", 10);
         data.add(data1);
         data.add(data2);
         data.add(data3);
         data.add(data4);
         data.add(data5);
+        data.add(data6);
 
         rule.put("data", data);
         params.put("rule", rule);
@@ -60,7 +64,7 @@ public class RoyaltyTemplateTest extends XPayTestBase {
         // 创建 royalty_template 方法
         // 参数: params
         RoyaltyTemplate obj = RoyaltyTemplate.create(params);
-
+        System.out.println(obj);
         assertEquals("object should be royalty_template", "royalty_template", obj.getObject());
         assertEquals("name", params.get("name"), obj.getName());
     }
@@ -69,11 +73,11 @@ public class RoyaltyTemplateTest extends XPayTestBase {
      * 查询单个 royalty_template
      */
     @Test public void testRoyaltyTemplateRetrieve() throws XPayException {
-        String id = "450170822152200001";
+        String id = "53629128839168";
         // 查询单个 royalty_template 方法
         // 参数: royalty_template id
         RoyaltyTemplate obj = RoyaltyTemplate.retrieve(id);
-
+        System.out.println(obj);
         assertEquals("object should be royalty_template", "royalty_template", obj.getObject());
         assertEquals("id", id, obj.getId());
     }
@@ -85,10 +89,21 @@ public class RoyaltyTemplateTest extends XPayTestBase {
         Map<String, Object> params = new HashMap<>();
         params.put("per_page", 3);
         params.put("page", 1);
+        params.put("app", XPayTestData.getAppID());
+        // fixed
+        params.put("rule[royalty_mode]", "rate");
+        // proportional full_refund no_refund
+        params.put("rule[refund_mode]", "no_refund");
+        // service_reserved receipt_reserved
+//        params.put("rule[allocation_mode]", "receipt_reserved");
+        params.put("created[gt]", 1624627383000L);
+//        params.put("created[gte]", 1624627415000L);
+        params.put("created[lt]", 1624627415000L);
+//        params.put("created[lte]", 1624627383000L);
         // 查询 royalty_template list 列表方法
         // 参数: params
         RoyaltyTemplateCollection objs = RoyaltyTemplate.list(params);
-
+        System.out.println(objs);
         assertEquals("object should be list", "list", objs.getObject());
     }
 
@@ -96,11 +111,11 @@ public class RoyaltyTemplateTest extends XPayTestBase {
      * 删除 royalty_template
      */
     @Test public void testRoyaltyTemplateDelete() throws XPayException {
-        String id = "450170822185800001";
+        String id = "53629128839168";
         // 删除 royalty_template 方法
         // 参数: royalty_template id
         DeleteRoyaltyTemplate obj = RoyaltyTemplate.delete(id);
-
+        System.out.println(obj);
         assertEquals("id", id, obj.getId());
     }
 
@@ -128,8 +143,8 @@ public class RoyaltyTemplateTest extends XPayTestBase {
 
         rule.put("data", data);
         params.put("rule", rule);
-        RoyaltyTemplate obj = RoyaltyTemplate.update("450170822152200001", params);
-
+        RoyaltyTemplate obj = RoyaltyTemplate.update("53629128839168", params);
+        System.out.println(obj);
         assertEquals("object should be royalty_template", "royalty_template", obj.getObject());
     }
 }
