@@ -17,10 +17,10 @@ public class SubAppChannelTest extends XPayTestBase {
      */
     @Test
     public void testSubAppChannelCreate() throws XPayException {
-        String subAppId = "app_rbDmXLHmLqbTLKm9";
+        String subAppId = "2f5a4b9412fc4c71a1280a15ed88f8a4";
 
         Map<String, Object> params = new HashMap<>();
-        params.put("channel", "bfb");
+        params.put("channel", "wx_lite");
         params.put("description", "Channel params description.");
         Map<String, Object> channelParams = new HashMap<>();
         channelParams.put("fee_rate", 60);
@@ -32,7 +32,7 @@ public class SubAppChannelTest extends XPayTestBase {
         // 参数一: SubApp id
         // 参数二: params
         Channel obj = Channel.create(subAppId, params);
-
+        System.out.println(obj);
         assertEquals("object should be channel", "channel", obj.getObject());
         assertEquals("description", params.get("description"), obj.getDescription());
     }
@@ -41,14 +41,14 @@ public class SubAppChannelTest extends XPayTestBase {
      * 查询子商户 app 渠道参数
      */
     @Test public void testSubAppChannelRetrieve() throws XPayException {
-        String subAppId = "app_rbDmXLHmLqbTLKm9";
-        String channel = "bfb";
+        String subAppId = "2f5a4b9412fc4c71a1280a15ed88f8a4";
+        String channel = "wx_lite";
 
         // 查询子商户 app 渠道参数方法
         // 参数一: subAppId
         // 参数二: channel 需要查询的渠道名
         Channel obj = Channel.retrieve(subAppId, channel);
-
+        System.out.println(obj);
         assertEquals("object should be channel", "channel", obj.getObject());
     }
 
@@ -56,14 +56,14 @@ public class SubAppChannelTest extends XPayTestBase {
      * 更新子商户 app 渠道参数
      */
     @Test public void testSubAppChannelUpdate() throws XPayException {
-        String subAppId = "app_rbDmXLHmLqbTLKm9";
+        String subAppId = "2f5a4b9412fc4c71a1280a15ed88f8a4";
         String channel = "bfb";
 
         Map<String, Object> params = new HashMap<>();
         params.put("description", "Channel params update description.");
         Map<String, Object> channelParams = new HashMap<>(); // 需要更新的渠道参数
-        channelParams.put("fee_rate", 60);
-        channelParams.put("bfb_sp", "1600200213");
+        channelParams.put("fee_rate", 1);
+        channelParams.put("bfb_sp", "16002002132");
         channelParams.put("bfb_key", "A9lUEVtdrrQobDHgzkzM2rThSNpXVELt");
         params.put("params", channelParams);
 
@@ -72,7 +72,7 @@ public class SubAppChannelTest extends XPayTestBase {
         // 参数二: channel 需要更新的渠道
         // 参数三: params
         Channel obj = Channel.update(subAppId, channel, params);
-
+        System.out.println(obj);
         assertEquals("object should be channel", "channel", obj.getObject());
     }
 
@@ -80,14 +80,14 @@ public class SubAppChannelTest extends XPayTestBase {
      * 删除子商户 app 渠道参数
      */
     @Test public void testSubAppChannelDelete() throws XPayException {
-        String subAppId = "app_rbDmXLHmLqbTLKm9";
+        String subAppId = "2f5a4b9412fc4c71a1280a15ed88f8a4";
         String channel = "bfb";
 
         // 删除子商户 app 渠道参数方法
         // 参数一: subAppId
         // 参数二: channel 需要删除的渠道名
         DeletedChannel obj = Channel.delete(subAppId, channel);
-
+        System.out.println(obj);
         assertEquals("channel", channel, obj.getChannel());
     }
 }
