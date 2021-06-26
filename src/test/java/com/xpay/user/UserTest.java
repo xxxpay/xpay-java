@@ -22,7 +22,7 @@ public class UserTest extends XPayTestBase {
      */
     @Test public void testUserCreate() throws XPayException {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("id", XPayTestData.userId); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
+        params.put("id", XPayTestData.userId + "_05"); // 用户 ID，首字母必须是英文数字或者 _-@, 必传
         params.put("address", "Shanghai, China");       // 用户地址, 可选
         params.put("avatar", "https://example.com/avatar.png"); // 头像, 可选
         params.put("email", params.get("id") + "@gmail.com");   // 邮箱地址, 可选
