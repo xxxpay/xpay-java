@@ -19,11 +19,11 @@ public class SubAppTest extends XPayTestBase {
      */
     @Test
     public void testSubAppCreate() throws XPayException {
-        String userId = XPayTestData.userId + "list_7";
-        String displayName = "list_7";
+        String userId = XPayTestData.userId + "royalty_2";
+        String displayName = "royalty_2";
 
         String parentId = XPayTestData.getAppID();
-        parentId = "9c52ff2df68c4ac3b111d21c4b680beb";
+        parentId = "e16cbf9a945345e6807aa0cc44dc27b3";
 
         Map<String, Object> params = new HashMap<>();
         params.put("user", userId);
@@ -61,10 +61,10 @@ public class SubAppTest extends XPayTestBase {
         params.put("page", 1);
         params.put("per_page", 30);
 //        params.put("level", 2);
-        params.put("parent_app", "f5b7465ee40a49539a84ea4c9ee92521");
-        params.put("created[gt]", 1624611679000L);
+        params.put("parent_app", XPayTestData.getAppID());
+//        params.put("created[gt]", 1624611679000L);
 //        params.put("created[gte]", 1624611750000L);
-        params.put("created[lt]", 1624611750000L);
+//        params.put("created[lt]", 1624611750000L);
 //        params.put("created[lte]", 1624611679000L);
         // 查询子商户 app 列表方法
         // 参数: params

@@ -27,7 +27,7 @@ public class RoyaltyTemplateTest extends XPayTestBase {
 
         Map<String, Object> rule = new HashMap<>();
         rule.put("royalty_mode", "rate"); // 分润模式。分为按订单金额（包含优惠券金额）的比例 rate 和固定金额 fixed, 必传
-        rule.put("refund_mode", "no_refund"); // 退分润模式。分为退款时不退分润 no_refund、按比例退分润 proportional 和一旦退款分润全退 full_refund, 必传
+        rule.put("refund_mode", "proportional"); // 退分润模式。分为退款时不退分润 no_refund、按比例退分润 proportional 和一旦退款分润全退 full_refund, 必传
         // 分配模式。指当订单确定的层级如果少于模板配置层级时，模板中多余的分润金额是归属于收款方 receipt_reserved 还是服务方 service_reserved。
         // 必传
         rule.put("allocation_mode", "receipt_reserved");
@@ -35,22 +35,22 @@ public class RoyaltyTemplateTest extends XPayTestBase {
         List<Map> data = new ArrayList<>(); // 分润数据列表, 必传
         Map<String, Object> data1 = new HashMap<>();
         data1.put("level", 0);  // 子商户层级值，0 表示平台， 1 表示一级子商户，取值范围 >=0
-        data1.put("value", 11); // 分润数值。rate 下取值为 0 - 10000，单位为 0.01 %，fixed 下取值为 0 - 1000000，单位为分
+        data1.put("value", 5000); // 分润数值。rate 下取值为 0 - 10000，单位为 0.01 %，fixed 下取值为 0 - 1000000，单位为分
         Map<String, Object> data2 = new HashMap<>();
         data2.put("level", 1);
-        data2.put("value", 12);
+        data2.put("value", 5000);
         Map<String, Object> data3 = new HashMap<>();
         data3.put("level", 2);
-        data3.put("value", 20);
+        data3.put("value", 5000);
         Map<String, Object> data4 = new HashMap<>();
         data4.put("level", 3);
-        data4.put("value", 25);
+        data4.put("value", 5000);
         Map<String, Object> data5 = new HashMap<>();
         data5.put("level", 4);
-        data5.put("value", 30);
+        data5.put("value", 5000);
         Map<String, Object> data6 = new HashMap<>();
         data6.put("level", 5);
-        data6.put("value", 10);
+        data6.put("value", 5000);
         data.add(data1);
         data.add(data2);
         data.add(data3);
@@ -73,7 +73,7 @@ public class RoyaltyTemplateTest extends XPayTestBase {
      * 查询单个 royalty_template
      */
     @Test public void testRoyaltyTemplateRetrieve() throws XPayException {
-        String id = "53629128839168";
+        String id = "53652865716224";
         // 查询单个 royalty_template 方法
         // 参数: royalty_template id
         RoyaltyTemplate obj = RoyaltyTemplate.retrieve(id);
@@ -111,7 +111,7 @@ public class RoyaltyTemplateTest extends XPayTestBase {
      * 删除 royalty_template
      */
     @Test public void testRoyaltyTemplateDelete() throws XPayException {
-        String id = "53629128839168";
+        String id = "53652865716224";
         // 删除 royalty_template 方法
         // 参数: royalty_template id
         DeleteRoyaltyTemplate obj = RoyaltyTemplate.delete(id);
@@ -143,7 +143,7 @@ public class RoyaltyTemplateTest extends XPayTestBase {
 
         rule.put("data", data);
         params.put("rule", rule);
-        RoyaltyTemplate obj = RoyaltyTemplate.update("53629128839168", params);
+        RoyaltyTemplate obj = RoyaltyTemplate.update("53652865716224", params);
         System.out.println(obj);
         assertEquals("object should be royalty_template", "royalty_template", obj.getObject());
     }

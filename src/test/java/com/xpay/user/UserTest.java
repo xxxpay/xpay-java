@@ -55,6 +55,7 @@ public class UserTest extends XPayTestBase {
      */
     @Test public void testUserRetrieve() throws XPayException {
         String userId = XPayTestData.userId;
+        userId = "user_test_02royalty_1";
         User obj = User.retrieve(userId); //查询 User 方法
 
         System.out.println(obj);

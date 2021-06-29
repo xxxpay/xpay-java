@@ -56,23 +56,23 @@ public class RoyaltyTest extends XPayTestBase {
         params.put("page", 1);      // 可选
 //        params.put("royalty_settlement", null);  // 可选 关联的分润结算 ID
 //        params.put("royalty_transaction", null); // 可选 关联的分润结算明细 ID
-        params.put("payer_app", XPayTestData.getAppID());      // 可选
+//        params.put("payer_app", XPayTestData.getAppID());      // 可选
 //        params.put("recipient_app", XPayTestData.getAppID());      // 可选
-        params.put("source_app", XPayTestData.getAppID());      // 可选
+//        params.put("source_app", XPayTestData.getAppID());      // 可选
 //        params.put("source_no", "20171624691382721");      // 可选
 
         List source_nos = new ArrayList<String>();
         source_nos.add("20171624691382721");
         source_nos.add("20171624691382722");
-        params.put("source_nos", source_nos);      // 可选
-        params.put("source_user", "user_test_02_01");      // 可选
+//        params.put("source_nos", source_nos);      // 可选
+//        params.put("source_user", "user_test_02royalty_1");      // 可选
 
         // 值为 created：入账、pending：结算发起、waiting：结算汇总、succeeded：结算成功
 //        params.put("status", "succeeded");      // 可选
-//        params.put("created[gt]", 1624691519000L);
-        params.put("created[gte]", 1624691519000L);
+        params.put("created[gt]", 1624691519000L);
+//        params.put("created[gte]", 1624691519000L);
 //        params.put("created[lt]", 1624691519000L);
-        params.put("created[lte]", 1624691519000L);
+//        params.put("created[lte]", 1624691519000L);
         // 查询 royalty list 列表方法
         // 参数: params
         RoyaltyCollection objs = Royalty.list(params);
