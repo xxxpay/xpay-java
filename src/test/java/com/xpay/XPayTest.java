@@ -131,7 +131,9 @@ public class XPayTest {
             PaymentCollection chs = Payment.list(params);
 
 //            System.out.println(chs);
-            List<String> ids = chs.getData().stream().map(payment -> {return payment.getId();}).collect(Collectors.toList());
+            List<String> ids = chs.getData().stream().map(payment -> {
+                return payment.getId();
+            }).collect(Collectors.toList());
             System.out.println(ids);
             List<Long> times = chs.getData().stream().map(payment -> payment.getCreated()).collect(Collectors.toList());
             System.out.println(times);
@@ -192,7 +194,7 @@ public class XPayTest {
             refundParams.put("limit", 4);
 //            refundParams.put("starting_after", "53421389156352");
 //            refundParams.put("ending_before", "53421398593536");
-            PaymentRefundCollection objs = Refund.list("53534397337600",refundParams);
+            PaymentRefundCollection objs = Refund.list("53534397337600", refundParams);
 //            System.out.println(objs);
 
             List<String> ids = objs.getData().stream().map(it -> it.getId()).collect(Collectors.toList());
