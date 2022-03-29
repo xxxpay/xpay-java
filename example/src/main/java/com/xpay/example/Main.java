@@ -33,49 +33,11 @@ public class Main {
         XPay.apiKey = props.getProperty("api_key");
         XPay.appId = props.getProperty("app_id");
 
-        // 设置私钥路径，用于请求签名
-//        XPay.privateKeyPath = privateKeyFilePath;
-
-        /**
-         * 或者直接设置私钥内容
-         XPay.privateKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
-         "... 私钥内容字符串 ...\n" +
-         "-----END RSA PRIVATE KEY-----\n";
-         */
-
+        // 设置私钥，用于请求签名
         XPay.privateKey = FileUtil.getStringFromFile(Main.projectDir + props.getProperty("private_key_path"));
 
         // Payment 示例
         PaymentExample.runDemos(XPay.appId);
-
-        // Refund 示例
-        RefundExample.runDemos();
-
-        // RedEnvelope 示例
-//        RedEnvelopeExample.runDemos(XPay.appId);
-
-        // Transfer 示例
-        TransferExample.runDemos(XPay.appId);
-
-        // Event 示例
-        EventExample.runDemos();
-
-        // Webhooks 验证示例
-        WebhooksVerifyExample.runDemos();
-
-        // 微信公众号 openid 相关示例
-        WxPubOAuthExample.runDemos(XPay.appId);
-
-        // 身份证银行卡信息认证接口
-        // 请使用 live key 调用该接口
-        // IdentificationExample.runDemos(appId);
-
-        // 批量付款示例
-        BatchTransferExample.runDemos(XPay.appId);
-
-        // 报关
-        // 请使用 live key 调用该接口
-        CustomsExample.runDemos(XPay.appId);
     }
 
     private static SecureRandom random = new SecureRandom();

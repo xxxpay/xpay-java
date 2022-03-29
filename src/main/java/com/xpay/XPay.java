@@ -7,8 +7,7 @@ public abstract class XPay {
     /**
      * XPay API BASE URL
      */
-//    public static final String LIVE_API_BASE = "https://api.lucfish.com/xpay";
-    public static final String LIVE_API_BASE = "https://api-test.lucfish.com/xpay";
+    public static final String LIVE_API_BASE = "https://api.lucfish.com/xpay";
     /**
      * version
      */

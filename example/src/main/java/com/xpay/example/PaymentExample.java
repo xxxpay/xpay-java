@@ -40,8 +40,6 @@ public class PaymentExample {
         paymentExample.retrieve(payment.getId());
         System.out.println("------- 查询 payment 列表 -------");
         paymentExample.list();
-        System.out.println("------- 撤销 payment（仅支持线下渠道） -------");
-        paymentExample.reverse(payment.getId());
     }
 
     /**
@@ -58,8 +56,8 @@ public class PaymentExample {
         Map<String, Object> paymentMap = new HashMap<String, Object>();
         paymentMap.put("amount", 1);//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         paymentMap.put("currency", "cny");
-        paymentMap.put("subject", "Your Subject");
-        paymentMap.put("body", "Your Body");
+        paymentMap.put("subject", "XPay支付");
+        paymentMap.put("body", "XPay支付");
         String orderNo = new Date().getTime() + Main.randomString(7);
         paymentMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
         paymentMap.put("channel", channel);// 支付使用的第三方支付渠道取值，请参考：https://www.xpay.com/api#api-c-new
@@ -356,7 +354,7 @@ public class PaymentExample {
     private Map<String, Object> wxWapExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 可选，支付完成的回调地址。
-        extra.put("result_url", "https://lucfish.com/success");
+        extra.put("result_url", "https://xpay.lucfish.com");
 
         // 可选，商品标记，代金券或立减优惠功能的参数。
         // extra.put("goods_tag", "YOUR_GOODS_TAG");
